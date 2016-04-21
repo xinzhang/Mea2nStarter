@@ -21,8 +21,11 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             WelcomeComponent = (function () {
                 function WelcomeComponent() {
                     this.pageTitle = "Welcome";
-                    this.searchText = "f";
+                    this.searchText = "";
                 }
+                WelcomeComponent.prototype.search = function () {
+                    console.log('search: ' + this.searchText);
+                };
                 WelcomeComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/home/welcome.component.html'

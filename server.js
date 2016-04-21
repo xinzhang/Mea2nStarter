@@ -32,6 +32,20 @@ app.post('/Register', function(req, res){
 	// });
 });
 
+app.get('/search', function(req, res){
+	console.log(req.query);
+	
+	if (req.query.q)
+	{
+		//var query = req.query.q;
+	 	res.status(200).send(req.query.q);		
+	}
+	else
+	{
+		res.status(400).send();
+	}
+})
+
 app.get('/games', function(req, res){
     console.log(req.body);
     res.status(200).send("games coming soon 1");

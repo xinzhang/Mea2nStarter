@@ -5,6 +5,9 @@ import { Component } from 'angular2/core';
 })
 export class WelcomeComponent {
     public pageTitle: string = "Welcome";
-    public searchText: string = "f";
+    public searchText: string = "";
     
+    search() : void {
+        console.log('search: ' + this.searchText);
+    }
 }
