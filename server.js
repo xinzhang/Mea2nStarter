@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = new express();
-var port = 4000;
+var port = process.env.PORT || 4000;
 
 //var UserModel = require('./corlateSchema.js');
 
@@ -14,9 +14,9 @@ app.use(bodyParser.json());
 
 app.use('/', express.static(__dirname + ''));
 
-//app.get("/", function(req, res) {
-//  res.sendFile(__dirname + '/web/index.html')
-//})
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + '/web/index.html')
+})
 
 app.post('/Register', function(req, res){	
 	console.log(req.body);
@@ -28,12 +28,13 @@ app.post('/Register', function(req, res){
 	// 	}
 
 	// 	console.log('user1 saved.');		
-	// 	res.status(200).end();
+	res.status(200).send("register");
 	// });
 });
 
 app.get('/games', function(req, res){
     console.log(req.body);
+    res.status(200).send("games coming soon 1");
 })
 
 app.listen(port, function(error) {

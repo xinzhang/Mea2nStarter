@@ -20,12 +20,13 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.pageTtle = "this is the first app component.";
+                    this.pageTitle = "this is the first app component.";
+                    this.user1 = "abc3";
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <h1>{{pageTtle}}</h1>\n    "
+                        templateUrl: 'app/app.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

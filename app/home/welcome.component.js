@@ -21,6 +21,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             WelcomeComponent = (function () {
                 function WelcomeComponent() {
                     this.pageTitle = "Welcome";
+                    this.searchText = "f";
                 }
                 WelcomeComponent = __decorate([
                     core_1.Component({

@@ -1,34 +1,36 @@
 {
-    "name": "product-management",
-    "version": "1.0.0",
-    "author": "Deborah Kurata",
-    "description": "Package for the Acme Product Management sample application",
-    "scripts": {
-        "start": "concurrent \"npm run tsc:w\" \"node server.js\" ",
-        "tsc": "tsc",
-        "tsc:w": "tsc -w",
-        "lite": "lite-server",
-        "typings": "typings",
-        "postinstall": "typings install"
-    },
-    "license": "ISC",
-    "dependencies": {
-        "angular2": "2.0.0-beta.15",
-        "systemjs": "0.19.26",
-        "es6-shim": "^0.35.0",
-        "reflect-metadata": "0.1.2",
-        "rxjs": "5.0.0-beta.2",
-        "zone.js": "0.6.10",
-        "bootstrap": "^3.3.6",
-        "express": "^4.13.4",
-        "body-parser": "^1.15.0",
-        "mongoose": "^4.4.9"
-    },
-    "devDependencies": {
-        "concurrently": "^2.0.0",
-        "lite-server": "^2.2.0",
-        "typescript": "^1.8.10",
-        "typings": "^0.7.12"
-    },
-    "repository": {}
+  "name": "product-management",
+  "version": "1.0.0",
+  "author": "Deborah Kurata",
+  "description": "Package for the Acme Product Management sample application",
+  "scripts": {
+    "start": "concurrent \"npm run tsc:w\" \"gulp watch\" ",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "typings": "typings",
+    "postinstall": "typings install"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "2.0.0-beta.15",
+    "systemjs": "0.19.26",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.6.10",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
+    "body-parser": "^1.15.0",
+    "mongoose": "^4.4.9"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.0.6",
+    "lite-server": "^2.2.0",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12"
+  },
+  "repository": {}
 }
