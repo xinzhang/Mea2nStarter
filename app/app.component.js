@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './home/welcome.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './home/welcome.component', './auth/register.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './home/welcome.component']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, welcome_component_1;
+    var core_1, router_1, welcome_component_1, register_component_1;
     var AppComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', 'angular2/router', './home/welcome.component']
             },
             function (welcome_component_1_1) {
                 welcome_component_1 = welcome_component_1_1;
+            },
+            function (register_component_1_1) {
+                register_component_1 = register_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -37,7 +40,8 @@ System.register(['angular2/core', 'angular2/router', './home/welcome.component']
                         providers: [router_1.ROUTER_PROVIDERS]
                     }),
                     router_1.RouteConfig([
-                        { path: '/welcome', name: 'Welcome', component: welcome_component_1.WelcomeComponent, useAsDefault: true }
+                        { path: '/welcome', name: 'Welcome', component: welcome_component_1.WelcomeComponent, useAsDefault: true },
+                        { path: '/register', name: 'Register', component: register_component_1.RegisterComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

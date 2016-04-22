@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {ROUTER_PROVIDERS, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 
 import {WelcomeComponent} from './home/welcome.component';
+import {RegisterComponent} from './auth/register.component';
 
 @Component({
     selector: 'my-app',
@@ -10,7 +11,8 @@ import {WelcomeComponent} from './home/welcome.component';
     providers: [ROUTER_PROVIDERS]    
 })
 @RouteConfig([
-    { path: '/welcome', name:'Welcome', component: WelcomeComponent, useAsDefault:true}
+    { path: '/welcome', name:'Welcome', component: WelcomeComponent, useAsDefault:true} ,
+    { path: '/register', name:'Register', component: RegisterComponent}
 ])
 export class AppComponent {
     pageTitle : string = "this is the first app component." ;

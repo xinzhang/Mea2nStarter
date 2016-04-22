@@ -4,7 +4,8 @@
         "**/.git": true,
         "**/.DS_Store": true,
         "**/app/*.js": true,
-        "**/app/home/*.js": true,        
+        "**/app/home/*.js": true,
+        "**/app/auth/*.js": true,        
         "**/*.map":true
     }, 
     "files.autoSave": "afterDelay"

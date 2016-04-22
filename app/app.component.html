@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse">
     <div class="navbar-inner">
         <div class="container-fluid">
             <!--<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -14,8 +14,12 @@
             </div>
 
             <ul class="nav navbar-nav">
-                <li class="active"><a id="btnRun" title="" href="/Welcome">Welcome</a></li>
-                <li><a id="btnRun" title="" href="/Welcome">New release</a></li>
+                <li class="active">
+                    <a [routerLink]="['Welcome']">Welcome</a> 
+                </li>
+                <li>                    
+                    <a [routerLink]="['Register']">New Release</a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -34,7 +38,7 @@
                             <button type="button" id="btnLogin" class="btn">Login</button>
                         </form>
                         <form class="form dropdown-login">
-                            <a href="#" title="Fast and free sign up!" id="btnNewUser" data-toggle="collapse" data-target="#formRegister">New User? Sign-up..</a>
+                            <a [routerLink]="['Register']" title="Fast and free sign up!" id="btnNewUser" data-toggle="collapse">New User? Sign-up..</a>
                         </form>
                         <form id="formRegister" class="form dropdown-login collapse">
                             <input name="_csrf" id="token" type="hidden" value="4mUqko6l-1VDLKoFLqLZZ0o-A9x0IfRRMlkg">
@@ -45,8 +49,9 @@
                             <input name="verify" id="inputVerify" type="password" placeholder="Password (again)" required=""><br>
                             <button type="button" id="btnRegister" class="btn">Sign Up</button>
                         </form>
-                        <a data-toggle="modal" role="button" href="#forgotPasswordModal">Forgot username or password?</a>
-                        <a data-toggle="modal" role="button" href="#contactModal"><small>Need help? Contact us</small></a>
+                        <a style="display:block" data-toggle="modal" role="button" href="#forgotPasswordModal">Forgot username or password?</a>
+                        
+                        <a class="list-style" data-toggle="modal" role="button" href="#contactModal"><small>Need help? Contact us</small></a>
                     </div>
                 </li>
             </ul>
