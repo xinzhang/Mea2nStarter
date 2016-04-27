@@ -4,8 +4,11 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 import 'rxjs/Rx'; //load all features
 
 import {WelcomeComponent} from './home/welcome.component';
+import {NewReleaseComponent} from './home/newRelease.component';
+
 import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
+import {ForgotPasswordComponent} from './auth/forgotPassword.component';
 
 import {AuthService} from './services/auth.service';
 
@@ -17,7 +20,10 @@ import {AuthService} from './services/auth.service';
 })
 @RouteConfig([
     { path: '/welcome', name:'Welcome', component: WelcomeComponent, useAsDefault:true} ,
-    { path: '/register', name:'Register', component: RegisterComponent}
+    { path: '/newRelease', name:'NewRelease', component: NewReleaseComponent} ,
+    { path: '/register', name:'Register', component: RegisterComponent},
+    { path: '/login', name:'Login', component: LoginComponent},
+    { path: '/forgotPassword', name:'ForgotPassword', component: ForgotPasswordComponent}
 ])
 export class AppComponent {
     pageTitle : string = "this is the first app component." ;

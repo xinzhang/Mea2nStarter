@@ -17,7 +17,7 @@ authRouter.route('/register')
 
             collection.insert(user,
                 function (err, results) {
-                    req.login(results.ops[0], function () {                        
+                    req.login(results.ops[0], function () {
                         res.redirect('/auth/profile');
                     })
                 });
@@ -26,6 +26,12 @@ authRouter.route('/register')
     });
 
 authRouter.route('/profile')
+    .all(function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        }
+        next();
+    })
     .get(function (req, res) {
         console.log('Profile ' + req.body);
 

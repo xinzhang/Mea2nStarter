@@ -18,7 +18,7 @@
                     <a [routerLink]="['Welcome']">Welcome</a> 
                 </li>
                 <li>                    
-                    <a [routerLink]="['Register']">New Release</a>
+                    <a [routerLink]="['NewRelease']">New Release</a>                    
                 </li>
             </ul>
 
@@ -42,7 +42,7 @@
                             <input name="verify" id="inputVerify" type="password" placeholder="Password (again)" required=""><br>
                             <button type="button" id="btnRegister" class="btn">Sign Up</button>
                         </form>
-                        <a style="display:block" data-toggle="modal" role="button" href="#forgotPasswordModal">Forgot username or password?</a>
+                        <a style="display:block" data-toggle="modal" role="button" [routerLink]="['ForgotPassword']">Forgot username or password?</a>
                         
                         <a class="list-style" data-toggle="modal" role="button" href="#contactModal"><small>Need help? Contact us</small></a>
                     </div>
