@@ -1,15 +1,19 @@
 import {Component} from 'angular2/core';
 import {ROUTER_PROVIDERS, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
+import { HTTP_PROVIDERS } from 'angular2/http';
+import 'rxjs/Rx'; //load all features
 
 import {WelcomeComponent} from './home/welcome.component';
 import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
 
+import {AuthService} from './services/auth.service';
+
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     directives: [ROUTER_DIRECTIVES, LoginComponent],
-    providers: [ROUTER_PROVIDERS]    
+    providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService]    
 })
 @RouteConfig([
     { path: '/welcome', name:'Welcome', component: WelcomeComponent, useAsDefault:true} ,

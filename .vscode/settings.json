@@ -6,6 +6,7 @@
         "**/app/*.js": true,
         "**/app/home/*.js": true,
         "**/app/auth/*.js": true,        
+        "**/app/services/*.js": true,
         "**/*.map":true
     }, 
     "files.autoSave": "afterDelay"
