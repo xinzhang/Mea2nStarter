@@ -1,18 +1,22 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var session = require('express-session');
+
 var app = new express();
 var port = process.env.PORT || 4000;
 
 //var UserModel = require('./corlateSchema.js');
 
-// var compiler = webpack(config)
-// app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
-// app.use(webpackHotMiddleware(compiler))
-
 var authRoutes = require('./routes/authRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({secret: 'xz_MEA2N'}));
+
+require('./passport')(app);
 
 app.use('/', express.static(__dirname + ''));
 
