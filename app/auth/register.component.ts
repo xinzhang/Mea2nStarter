@@ -4,11 +4,11 @@ import {Component} from 'angular2/core';
     templateUrl: 'app/auth/register.component.html'
 })
 export class RegisterComponent {
-    public useremail : string = "";
+    public userEmail : string = "";
     public password : string = "";
     
     register(): void {
-        console.log('register');
+        console.log('register ' + this.userEmail);
         
     }
 }

@@ -11,31 +11,32 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var RegisterComponent;
+    var LoginComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            RegisterComponent = (function () {
-                function RegisterComponent() {
-                    this.userEmail = "";
+            LoginComponent = (function () {
+                function LoginComponent() {
+                    this.username = "";
                     this.password = "";
                 }
-                RegisterComponent.prototype.register = function () {
-                    console.log('register ' + this.userEmail);
+                LoginComponent.prototype.login = function () {
+                    console.log('login ' + this.username + "-" + this.password);
                 };
-                RegisterComponent = __decorate([
+                LoginComponent = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/auth/register.component.html'
+                        selector: 'my-login',
+                        templateUrl: 'app/auth/login.component.html',
                     }), 
                     __metadata('design:paramtypes', [])
-                ], RegisterComponent);
-                return RegisterComponent;
+                ], LoginComponent);
+                return LoginComponent;
             }());
-            exports_1("RegisterComponent", RegisterComponent);
+            exports_1("LoginComponent", LoginComponent);
         }
     }
 });
-//# sourceMappingURL=register.component.js.map
+//# sourceMappingURL=login.component.js.map

@@ -29,14 +29,7 @@
                     </a>
 
                     <div class="dropdown-menu" style="padding:17px;">
-                        <form id="formLogin" class="form dropdown-login">
-                            <label>Login</label>
-                            <input name="_csrf" id="token" type="hidden" value="4mUqko6l-1VDLKoFLqLZZ0o-A9x0IfRRMlkg">
-                            <input name="username" id="username" type="text" placeholder="Username" pattern="^[a-z,A-Z,0-9,_]{6,15}$" data-valid-min="6"
-                                title="Enter your username" required="">
-                            <input name="password" id="password" type="password" placeholder="Password" title="Enter your password" required=""><br>
-                            <button type="button" id="btnLogin" class="btn">Login</button>
-                        </form>
+                        <my-login></my-login>
                         <form class="form dropdown-login">
                             <a [routerLink]="['Register']" title="Fast and free sign up!" id="btnNewUser" data-toggle="collapse">New User? Sign-up..</a>
                         </form>

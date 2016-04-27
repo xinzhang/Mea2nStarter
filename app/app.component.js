@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './home/welcome.component', './auth/register.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './home/welcome.component', './auth/register.component', './auth/login.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './home/welcome.component',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, welcome_component_1, register_component_1;
+    var core_1, router_1, welcome_component_1, register_component_1, login_component_1;
     var AppComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', 'angular2/router', './home/welcome.component',
             },
             function (register_component_1_1) {
                 register_component_1 = register_component_1_1;
+            },
+            function (login_component_1_1) {
+                login_component_1 = login_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -36,7 +39,7 @@ System.register(['angular2/core', 'angular2/router', './home/welcome.component',
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES],
+                        directives: [router_1.ROUTER_DIRECTIVES, login_component_1.LoginComponent],
                         providers: [router_1.ROUTER_PROVIDERS]
                     }),
                     router_1.RouteConfig([
