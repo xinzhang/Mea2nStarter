@@ -22,9 +22,14 @@ export class AuthService {
             .catch(this.handleError);
     }
 
-    login(any): void {
-        // return this.cachedProducts.find(x => x.productId == id);
-        console.log('service level login');
+    login(data: any): Observable<any> {        
+        console.log('service level login ' + data);
+        
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+        return this._http.post(this._login_url, JSON.stringify(data), options)            
+            .catch(this.handleError);        
     }
 
     handleError(error: Response) {

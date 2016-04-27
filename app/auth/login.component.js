@@ -24,15 +24,17 @@ System.register(['angular2/core', '../services/auth.service'], function(exports_
             LoginComponent = (function () {
                 function LoginComponent(_authService) {
                     this._authService = _authService;
-                    this.username = "";
+                    this.userEmail = "";
                     this.password = "";
+                    this.errorMessage = "";
                 }
                 LoginComponent.prototype.login = function () {
-                    //console.log('login ' + this.username + "-" + this.password);
+                    var _this = this;
+                    console.log('login ' + this.userEmail + "-" + this.password);
                     this._authService.login({
-                        'username': this.username,
+                        'email': this.userEmail,
                         'password': this.password
-                    });
+                    }).subscribe(function (user) { return _this.userObject = user; }, function (error) { return _this.errorMessage = error; });
                 };
                 LoginComponent = __decorate([
                     core_1.Component({

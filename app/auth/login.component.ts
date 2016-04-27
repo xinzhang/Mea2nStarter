@@ -8,19 +8,25 @@ import {AuthService} from '../services/auth.service'
     
 })
 export class LoginComponent {
-    public username : string = "";
+    public userEmail : string = "";
     public password : string = "";
+    
+    public errorMessage: string = "";    
+    public userObject: any;
     
     constructor(private _authService : AuthService) {        
     }
     
     login(): void {
-        //console.log('login ' + this.username + "-" + this.password);
+        console.log('login ' + this.userEmail + "-" + this.password);
+        
         this._authService.login({
-           'username': this.username,
+           'email': this.userEmail,
            'password': this.password 
-        });
-                            
+        }).subscribe(
+            user => this.userObject = user,
+            error => this.errorMessage = <any>error);
+        )                            
     }
-    
+        
 }

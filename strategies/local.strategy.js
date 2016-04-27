@@ -1,5 +1,6 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var mongodb = require('mongodb');
 
 module.exports = function() {
     passport.use(new LocalStrategy({
@@ -13,10 +14,12 @@ module.exports = function() {
             mongodb.connect(url, function (err, db) {
                 var collection = db.collection('users');
                 collection.findOne({
-                        username: username
+                        email: username
                     },
                     
                     function (err, results) {
+                        console.log(JSON.stringify(results));
+                        
                         if (results.password === password) {
                             var user = results;
                             done(null, user);

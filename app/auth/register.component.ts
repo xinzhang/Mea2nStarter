@@ -9,8 +9,8 @@ import {AuthService} from '../services/auth.service';
 export class RegisterComponent {
     public userEmail: string = "";
     public password: string = "";
-    public errorMessage: string = "";
     
+    public errorMessage: string = "";    
     public userObject: any;
     
     constructor(private _authService: AuthService) {

@@ -37,9 +37,12 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     return this._http.post(this._register_url, JSON.stringify(data), options)
                         .catch(this.handleError);
                 };
-                AuthService.prototype.login = function (any) {
-                    // return this.cachedProducts.find(x => x.productId == id);
-                    console.log('service level login');
+                AuthService.prototype.login = function (data) {
+                    console.log('service level login ' + data);
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.post(this._login_url, JSON.stringify(data), options)
+                        .catch(this.handleError);
                 };
                 AuthService.prototype.handleError = function (error) {
                     console.error(error);
