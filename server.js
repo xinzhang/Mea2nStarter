@@ -9,6 +9,8 @@ var port = process.env.PORT || 4000;
 // app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
 // app.use(webpackHotMiddleware(compiler))
 
+var authRoutes = require('./routes/authRoutes');
+
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
@@ -18,19 +20,21 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + '/web/index.html')
 })
 
-app.post('/Register', function(req, res){	
-	console.log(req.body);
-	// var user1 = new UserModel(req.body);
-	// user1.save(function (err){
-	// 	if (err) {
-	// 		console.log(err.message);
-	// 		res.status(500).send(err.message);
-	// 	}
+app.use('/auth', authRoutes);
 
-	// 	console.log('user1 saved.');		
-	res.status(200).send("register");
-	// });
-});
+// app.post('/Register', function(req, res){	
+// 	console.log(req.body);
+// 	// var user1 = new UserModel(req.body);
+// 	// user1.save(function (err){
+// 	// 	if (err) {
+// 	// 		console.log(err.message);
+// 	// 		res.status(500).send(err.message);
+// 	// 	}
+
+// 	// 	console.log('user1 saved.');		
+// 	res.status(200).send("register");
+ 	// });
+// });
 
 app.get('/search', function(req, res){
 	console.log(req.query);

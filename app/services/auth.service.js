@@ -27,14 +27,15 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
             AuthService = (function () {
                 function AuthService(_http) {
                     this._http = _http;
-                    this._url = '/auth';
+                    this._register_url = '/auth/register';
+                    this._login_url = '/auth/login';
                 }
-                AuthService.prototype.register = function (any) {
-                    // return this._http.post(this._url + '/register', any) 
-                    //     .map( (resp:Response) => <IProduct[]>resp.json() )
-                    //     .do(data => this.cachedProducts = data)
-                    //     .catch(this.handleError);
-                    console.log('service level register');
+                AuthService.prototype.register = function (data) {
+                    console.log('service level register ' + data);
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.post(this._register_url, JSON.stringify(data), options)
+                        .catch(this.handleError);
                 };
                 AuthService.prototype.login = function (any) {
                     // return this.cachedProducts.find(x => x.productId == id);

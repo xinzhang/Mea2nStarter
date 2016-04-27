@@ -26,13 +26,15 @@ System.register(['angular2/core', '../services/auth.service'], function(exports_
                     this._authService = _authService;
                     this.userEmail = "";
                     this.password = "";
+                    this.errorMessage = "";
                 }
                 RegisterComponent.prototype.register = function () {
+                    var _this = this;
                     console.log('register ' + this.userEmail);
                     this._authService.register({
                         'email': this.userEmail,
                         'password': this.password
-                    });
+                    }).subscribe(function (user) { return _this.userObject = user; }, function (error) { return _this.errorMessage = error; });
                 };
                 RegisterComponent = __decorate([
                     core_1.Component({
