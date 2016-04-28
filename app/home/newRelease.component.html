@@ -1,4 +1,54 @@
-
-
 <h3>{{pageTitle}}</h3>
 
+<div class="row bottom10">
+    <div class="col-sm-6 col-md-6">
+        <ul class="list-inline">
+            <li><strong>Platform</strong></li>
+            <li><a [class.active]="platformFilter == ''" (click)="updatePlatformFilter('')">All</a></li>
+            <li *ngFor="#p of platformList">
+                | <a [class.active]="platformFilter == p" (click)="updatePlatformFilter(p)">{{p}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-6 col-md-6">
+
+        <a class="dropdown-toggle pull-right" data-toggle="dropdown" id="viewList">
+            <i class="glyphicon glyphicon-th"></i>
+        </a>
+
+
+        <ul class="dropdown-menu pull-right" style="padding:17px;" aria-labelledby="viewList">
+            <li><a>thumbnail view</a></li>
+            <li><a>list view</a></li>
+            <li><a>available only</a></li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="row bottom10">
+
+    <div class="col-sm-6 col-md-4" *ngFor='#g of games | gamePlatformFilter : platformFilter'>
+
+        <div class="thumbnail">
+            <img src="{{g.smallImageUrl}}" alt="{{g.gameTitle}" />
+        </div>
+
+        <div class="caption">
+            <h3>{{g.gameTitle}}</h3>
+            <p>{{g.platform}} - {{g.releaseDate}}</p>
+
+            <p>
+                <a href="#" class="btn btn-primary" role="button">
+               My collection
+            </a>
+
+                <a href="#" class="btn btn-default" role="button">
+               My wish list
+            </a>
+            </p>
+
+        </div>
+    </div>
+
+</div>

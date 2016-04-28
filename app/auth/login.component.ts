@@ -4,10 +4,10 @@ import {AuthService} from '../services/auth.service'
 
 @Component({
     selector: 'my-login',
-    templateUrl: 'app/auth/innerLogin.component.html',
+    templateUrl: 'app/auth/login.component.html',
     
 })
-export class InnerLoginComponent {
+export class LoginComponent {
     public userEmail : string = "";
     public password : string = "";
     

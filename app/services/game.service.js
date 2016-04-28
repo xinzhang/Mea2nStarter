@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1, Observable_1;
-    var GamesService;
+    var GameService;
     return {
         setters:[
             function (core_1_1) {
@@ -24,36 +24,36 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                 Observable_1 = Observable_1_1;
             }],
         execute: function() {
-            GamesService = (function () {
-                function GamesService(_http) {
+            GameService = (function () {
+                function GameService(_http) {
                     this._http = _http;
                     //private _games_url = '/games';
                     this._games_url = 'api/products/games.json';
                     this.games = [];
                 }
-                GamesService.prototype.newRelease = function () {
+                GameService.prototype.getNewRelease = function () {
                     var _this = this;
-                    console.log('service level newRelease ' + data);
+                    console.log('service level newRelease ');
                     return this._http.get(this._games_url)
                         .map(function (resp) { return resp.json(); })
                         .do(function (data) { return _this.games = data; })
                         .catch(this.handleError);
                 };
-                GamesService.prototype.getGameById = function (id) {
+                GameService.prototype.getGameById = function (id) {
                     return this.games.find(function (x) { return x.gameId == id; });
                 };
-                GamesService.prototype.handleError = function (error) {
+                GameService.prototype.handleError = function (error) {
                     console.error(error);
                     return Observable_1.Observable.throw(error.json().error || 'Server error');
                 };
-                GamesService = __decorate([
+                GameService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
-                ], GamesService);
-                return GamesService;
+                ], GameService);
+                return GameService;
             }());
-            exports_1("GamesService", GamesService);
+            exports_1("GameService", GameService);
         }
     }
 });
-//# sourceMappingURL=games.service.js.map
+//# sourceMappingURL=game.service.js.map

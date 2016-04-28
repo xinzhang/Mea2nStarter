@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './services/auth.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './services/auth.service', './services/game.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, register_component_1, login_component_1, forgotPassword_component_1, auth_service_1;
+    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, register_component_1, login_component_1, forgotPassword_component_1, auth_service_1, game_service_1;
     var AppComponent;
     return {
         setters:[
@@ -41,6 +41,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             },
             function (auth_service_1_1) {
                 auth_service_1 = auth_service_1_1;
+            },
+            function (game_service_1_1) {
+                game_service_1 = game_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -53,13 +56,12 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                         selector: 'my-app',
                         templateUrl: 'app/app.component.html',
                         directives: [router_1.ROUTER_DIRECTIVES, login_component_1.LoginComponent],
-                        providers: [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, auth_service_1.AuthService]
+                        providers: [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, auth_service_1.AuthService, game_service_1.GameService]
                     }),
                     router_1.RouteConfig([
                         { path: '/welcome', name: 'Welcome', component: welcome_component_1.WelcomeComponent, useAsDefault: true },
                         { path: '/newRelease', name: 'NewRelease', component: newRelease_component_1.NewReleaseComponent },
                         { path: '/register', name: 'Register', component: register_component_1.RegisterComponent },
-                        { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
                         { path: '/forgotPassword', name: 'ForgotPassword', component: forgotPassword_component_1.ForgotPasswordComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
