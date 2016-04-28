@@ -35,7 +35,7 @@
                     </a>
 
                     <div class="dropdown-menu" style="padding:17px;">
-                        <my-login></my-login>
+                        <my-login (LOGIN_SUCCESS)='onLoginSuccess($event)'></my-login>
                         <form class="form dropdown-login">
                             <a [routerLink]="['Register']" title="Fast and free sign up!" id="btnNewUser" data-toggle="collapse">New User? Sign-up..</a>
                         </form>

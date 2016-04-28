@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {RouteParams, Router} from 'angular2/router';
  
 import {AuthService} from '../services/auth.service';
@@ -19,6 +19,8 @@ export class LoginComponent {
                 private _router: Router) {        
     }
     
+    @Output() LOGIN_SUCCESS: EventEmitter<string> = new EventEmitter<string>();
+       
     login(): void {
         console.log('login ' + this.userEmail + "-" + this.password);
         
@@ -30,7 +32,8 @@ export class LoginComponent {
                 this.userObject = data;
                 console.log(this.userObject);
                 localStorage.setItem('jwt', this.userObject.email);
-                this._router.navigate(['welcome']);
+                //this._router.navigate(['Welcome']);
+                this.LOGIN_SUCCESS.emit(this.userObject.email);                
             },
             error => this.errorMessage = <any>error);
         )         

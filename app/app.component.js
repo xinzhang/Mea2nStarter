@@ -59,6 +59,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                     localStorage.removeItem('jwt');
                     this.user = null;
                 };
+                AppComponent.prototype.onLoginSuccess = function (user) {
+                    this.user = user;
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',

@@ -38,4 +38,8 @@ export class AppComponent implements OnInit {
         localStorage.removeItem('jwt');
         this.user = null;
     }
+    
+    onLoginSuccess(user:string): void {
+        this.user = user;
+    }
 }
