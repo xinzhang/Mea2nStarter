@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../services/auth.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../services/auth.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,20 +10,24 @@ System.register(['angular2/core', '../services/auth.service'], function(exports_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, auth_service_1;
+    var core_1, router_1, auth_service_1;
     var RegisterComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
             function (auth_service_1_1) {
                 auth_service_1 = auth_service_1_1;
             }],
         execute: function() {
             RegisterComponent = (function () {
-                function RegisterComponent(_authService) {
+                function RegisterComponent(_authService, _router) {
                     this._authService = _authService;
+                    this._router = _router;
                     this.userEmail = "";
                     this.password = "";
                     this.errorMessage = "";
@@ -34,13 +38,19 @@ System.register(['angular2/core', '../services/auth.service'], function(exports_
                     this._authService.register({
                         'email': this.userEmail,
                         'password': this.password
-                    }).subscribe(function (user) { return _this.userObject = user; }, function (error) { return _this.errorMessage = error; });
+                    }).subscribe(function (user) {
+                        _this.userObject = user;
+                        console.log(_this.userObject);
+                        localStorage.setItem('jwt', _this.userObject.email);
+                        _this._router.navigate(['Welcome']);
+                    }, function (error) { return _this.errorMessage = error; });
+                    this._router.navigate(['Welcome']);
                 };
                 RegisterComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/auth/register.component.html'
                     }), 
-                    __metadata('design:paramtypes', [auth_service_1.AuthService])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
                 ], RegisterComponent);
                 return RegisterComponent;
             }());

@@ -49,8 +49,16 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             AppComponent = (function () {
                 function AppComponent() {
                     this.pageTitle = "this is the first app component.";
-                    this.user1 = "abc3";
+                    this.user = null;
                 }
+                AppComponent.prototype.ngOnInit = function () {
+                    this.user = localStorage.getItem('jwt');
+                    console.log('ngOnInit ' + this.user);
+                };
+                AppComponent.prototype.signout = function () {
+                    localStorage.removeItem('jwt');
+                    this.user = null;
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',

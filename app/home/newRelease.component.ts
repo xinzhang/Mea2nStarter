@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 
 import {IGame} from '../services/game';
 import {GameService} from '../services/game.service';

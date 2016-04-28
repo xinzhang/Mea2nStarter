@@ -35,6 +35,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     return this._http.post(this._register_url, JSON.stringify(data), options)
+                        .map(function (resp) { return resp.json(); })
                         .catch(this.handleError);
                 };
                 AuthService.prototype.login = function (data) {
@@ -42,6 +43,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     return this._http.post(this._login_url, JSON.stringify(data), options)
+                        .map(function (resp) { return resp.json(); })
                         .catch(this.handleError);
                 };
                 AuthService.prototype.handleError = function (error) {

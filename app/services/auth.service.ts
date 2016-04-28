@@ -18,7 +18,8 @@ export class AuthService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.post(this._register_url, JSON.stringify(data), options)            
+        return this._http.post(this._register_url, JSON.stringify(data), options)
+            .map(resp => resp.json())            
             .catch(this.handleError);
     }
 
@@ -28,7 +29,8 @@ export class AuthService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         
-        return this._http.post(this._login_url, JSON.stringify(data), options)            
+        return this._http.post(this._login_url, JSON.stringify(data), options) 
+             .map ( resp => resp.json())
             .catch(this.handleError);        
     }
 

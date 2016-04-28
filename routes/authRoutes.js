@@ -18,7 +18,8 @@ authRouter.route('/register')
             collection.insert(user,
                 function (err, results) {
                     req.login(results.ops[0], function () {
-                        res.redirect('/auth/profile');
+                        //res.redirect('/auth/profile');                        
+                        res.send(user);
                     })
                 });
         });
@@ -42,7 +43,8 @@ authRouter.route('/login')
     .post(passport.authenticate('local', {
         failureredirect: '/'
     }), function (req, res) {
-        res.redirect('/auth/profile');
+        //res.redirect('/auth/profile');
+        res.json(req.body);
     });
 
 module.exports = authRouter;

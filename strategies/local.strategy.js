@@ -18,9 +18,8 @@ module.exports = function() {
                     },
                     
                     function (err, results) {
-                        console.log(JSON.stringify(results));
-                        
-                        if (results.password === password) {
+                        console.log(JSON.stringify(results));                        
+                        if (results != null && results.password === password) {
                             var user = results;
                             done(null, user);
                         } else {

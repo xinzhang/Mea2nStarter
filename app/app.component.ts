@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {ROUTER_PROVIDERS, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 import { HTTP_PROVIDERS } from 'angular2/http';
 import 'rxjs/Rx'; //load all features
@@ -17,15 +17,25 @@ import {GameService} from './services/game.service';
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     directives: [ROUTER_DIRECTIVES, LoginComponent],
-    providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, GameService]    
+    providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, GameService]
 })
 @RouteConfig([
-    { path: '/welcome', name:'Welcome', component: WelcomeComponent, useAsDefault:true} ,
-    { path: '/newRelease', name:'NewRelease', component: NewReleaseComponent} ,
-    { path: '/register', name:'Register', component: RegisterComponent},
-    { path: '/forgotPassword', name:'ForgotPassword', component: ForgotPasswordComponent}
+    { path: '/welcome', name: 'Welcome', component: WelcomeComponent, useAsDefault: true },
+    { path: '/newRelease', name: 'NewRelease', component: NewReleaseComponent },
+    { path: '/register', name: 'Register', component: RegisterComponent },
+    { path: '/forgotPassword', name: 'ForgotPassword', component: ForgotPasswordComponent }
 ])
-export class AppComponent {
-    pageTitle : string = "this is the first app component." ;
-    user1: string = "abc3";    
+export class AppComponent implements OnInit {
+    pageTitle: string = "this is the first app component.";
+    user: string = null;
+    ngOnInit(): void {
+        
+        this.user = localStorage.getItem('jwt');
+        console.log('ngOnInit ' + this.user);
+    }
+
+    signout(): void {
+        localStorage.removeItem('jwt');
+        this.user = null;
+    }
 }
