@@ -8,6 +8,8 @@ import {Observable} from 'rxjs/Observable';
 export class AuthService {
     private _register_url = '/auth/register';
     private _login_url = '/auth/login';
+    
+    AuthorisedUser:string = "";
 
     constructor(private _http: Http) { }
 

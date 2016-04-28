@@ -28,8 +28,8 @@ import {GameService} from './services/game.service';
 export class AppComponent implements OnInit {
     pageTitle: string = "this is the first app component.";
     user: string = null;
+
     ngOnInit(): void {
-        
         this.user = localStorage.getItem('jwt');
         console.log('ngOnInit ' + this.user);
     }
@@ -38,8 +38,12 @@ export class AppComponent implements OnInit {
         localStorage.removeItem('jwt');
         this.user = null;
     }
+
+    onLoginSuccess(user: string): void {
+        this.user = user;
+    }
     
-    onLoginSuccess(user:string): void {
+    onRegisterSuccess(user: string): void {
         this.user = user;
     }
 }

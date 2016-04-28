@@ -31,6 +31,7 @@ System.register(['angular2/core', 'angular2/router', '../services/auth.service']
                     this.userEmail = "";
                     this.password = "";
                     this.errorMessage = "";
+                    this.REGISTER_SUCCESS = new core_1.EventEmitter();
                 }
                 RegisterComponent.prototype.register = function () {
                     var _this = this;
@@ -42,10 +43,15 @@ System.register(['angular2/core', 'angular2/router', '../services/auth.service']
                         _this.userObject = user;
                         console.log(_this.userObject);
                         localStorage.setItem('jwt', _this.userObject.email);
-                        _this._router.navigate(['Welcome']);
+                        //this._router.navigate(['Welcome']);
+                        _this.REGISTER_SUCCESS.emit(_this.userObject.email);
                     }, function (error) { return _this.errorMessage = error; });
                     this._router.navigate(['Welcome']);
                 };
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], RegisterComponent.prototype, "REGISTER_SUCCESS", void 0);
                 RegisterComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/auth/register.component.html'

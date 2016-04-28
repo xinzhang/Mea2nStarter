@@ -62,6 +62,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                 AppComponent.prototype.onLoginSuccess = function (user) {
                     this.user = user;
                 };
+                AppComponent.prototype.onRegisterSuccess = function (user) {
+                    this.user = user;
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',

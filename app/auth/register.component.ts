@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Output, EventEmitter} from 'angular2/core';
 import {RouteParams, Router} from 'angular2/router';
 
 import {AuthService} from '../services/auth.service';
@@ -18,6 +18,8 @@ export class RegisterComponent {
                 private _router: Router) {
     }
 
+    @Output() REGISTER_SUCCESS = new EventEmitter();
+    
     register(): void {
         console.log('register ' + this.userEmail);
         this._authService.register({
@@ -28,7 +30,8 @@ export class RegisterComponent {
                 this.userObject = user;
                 console.log(this.userObject);
                 localStorage.setItem('jwt', this.userObject.email);
-                this._router.navigate(['Welcome']);
+                //this._router.navigate(['Welcome']);
+                this.REGISTER_SUCCESS.emit(this.userObject.email);
             },
             error => this.errorMessage = <any>error);   
         )
