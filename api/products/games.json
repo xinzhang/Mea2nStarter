@@ -1,0 +1,100 @@
+[    
+    {
+        "gameId": 1,
+        "isin": "B00BGA9Y3W",
+        "gameTitle": "Destiny: The Taken King",
+        "edition": "Standard",
+        "releaseDate": "March 19, 2016",
+        "platform": "playstation_4",
+        "publisher": "bungie",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/51-gn4nMtQL._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/51-gn4nMtQL.jpg"        
+    },
+     {
+        "gameId": 2,
+        "isin": "B01CHU4IY4",
+        "gameTitle": "Resident Evil 6",
+        "edition": "Standard",
+        "releaseDate": "March 19, 2016",
+        "platform": "playstation_4",
+        "publisher": "capcom",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/518fo9J68CL._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/518fo9J68CL.jpg"        
+    },
+     {
+        "gameId": 3,
+        "isin": "B00KVSQ848",
+        "gameTitle": "Grand Theft Auto V",
+        "edition": "Standard",
+        "releaseDate": "Mar 19, 2014",
+        "platform": "playstation_4",
+        "publisher": "RockStar",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/61r3go-E5VL._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/61r3go-E5VL.jpg"        
+    },
+     {
+        "gameId": 4,
+        "isin": "B00KAED850",
+        "gameTitle": "Far Cry 4",
+        "edition": "Standard",
+        "releaseDate": "Aug 9, 2015",
+        "platform": "playstation_4",
+        "publisher": "",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/51BLAjKQkbL._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/51-gn4nMtQL.jpg"        
+    },
+     {
+        "gameId": 5,
+        "isin": "B00YQ2KCWO",
+        "gameTitle": "Fallout 4",
+        "edition": "Standard",
+        "releaseDate": "Nov 11, 2015",
+        "platform": "playstation_4",
+        "publisher": "",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/51fszUaTD9L._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/51fszUaTD9L.jpg"        
+    },
+{
+        "gameId": 6,
+        "isin": "B00VU4J13W",
+        "gameTitle": "Call of Duty: Black Ops 3",
+        "edition": "Standard",
+        "releaseDate": "March 19, 2016",
+        "platform": "playstation_4",
+        "publisher": "Activision",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/514t3Nd8MkL._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/514t3Nd8MkL.jpg"        
+    },{
+        "gameId": 7,
+        "isin": "B00DEL3IIS",
+        "gameTitle": "Tom Clancy's The Division",
+        "edition": "Standard",
+        "releaseDate": "March 19, 2016",
+        "platform": "playstation_4",
+        "publisher": "Ubisoft",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/51q4n5UHc7L._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/51q4n5UHc7L.jpg"        
+    },
+    {
+        "gameId": 7,
+        "isin": "B00GZ1GUSY",
+        "gameTitle": "Tomb Raider Rise",
+        "edition": "Definitive",
+        "releaseDate": "June 19, 2015",
+        "platform": "playstation_4",
+        "publisher": "Square Enix",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/41Y0oasDf5L._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/41Y0oasDf5L.jpg"        
+    },
+    {
+        "gameId": 8,
+        "isin": "B00IQCRKT8",
+        "gameTitle": "Batman Arkham Knight",
+        "edition": "Definitive",
+        "releaseDate": "June 16, 2014",
+        "platform": "playstation_4",
+        "publisher": "WB Games",
+        "smallImageUrl": "http://ecx.images-amazon.com/images/I/514z7bstEBL._SL160_.jpg",
+        "largeImageUrl": "http://ecx.images-amazon.com/images/I/514z7bstEBL.jpg"        
+    }
+]

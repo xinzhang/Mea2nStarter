@@ -4,7 +4,7 @@ export interface IGame {
     gameTitle: string;    
     releaseDate: string;
     platform: string;
-
+    publisher: string;
     smallImageUrl: string;
     largeImageUrl: string;
     

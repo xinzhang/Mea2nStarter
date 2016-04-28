@@ -8,6 +8,7 @@ import {NewReleaseComponent} from './home/newRelease.component';
 
 import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
+import {InnerLoginComponent} from './auth/innerLogin.component';
 import {ForgotPasswordComponent} from './auth/forgotPassword.component';
 
 import {AuthService} from './services/auth.service';
