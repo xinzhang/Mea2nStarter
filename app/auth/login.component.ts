@@ -12,9 +12,7 @@ export class LoginComponent {
     public userEmail : string = "";
     public password : string = "";
     
-    public errorMessage: string = "";    
-    public userObject: any;
-    
+    public errorMessage: string = "";            
     constructor(private _authService : AuthService, 
                 private _router: Router) {        
     }
@@ -28,12 +26,12 @@ export class LoginComponent {
            'email': this.userEmail,
            'password': this.password 
         }).subscribe(
-            data => { 
-                this.userObject = data;
-                console.log(this.userObject);
-                localStorage.setItem('jwt', this.userObject.email);
+            data => {                 
+                localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);
-                this.LOGIN_SUCCESS.emit(this.userObject.email);                
+                this._authService.AuthorisedUser = data.email;
+                this.LOGIN_SUCCESS.emit("login success message");
+                                
             },
             error => this.errorMessage = <any>error);
         )         

@@ -9,7 +9,7 @@ export class AuthService {
     private _register_url = '/auth/register';
     private _login_url = '/auth/login';
     
-    AuthorisedUser:string = "";
+    AuthorisedUser:string = null;
 
     constructor(private _http: Http) { }
 

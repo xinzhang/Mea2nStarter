@@ -27,14 +27,13 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
             GamesService = (function () {
                 function GamesService(_http) {
                     this._http = _http;
-                    //private _games_url = '/games';
-                    this._games_url = 'api/products/games.json';
+                    this._games_url = '/games';
                     this.games = [];
                 }
                 GamesService.prototype.newRelease = function () {
                     var _this = this;
                     console.log('service level newRelease ' + data);
-                    return this._http.get(this._games_url)
+                    return this._http.get(this._games_url + '/newrelease')
                         .map(function (resp) { return resp.json(); })
                         .do(function (data) { return _this.games = data; })
                         .catch(this.handleError);

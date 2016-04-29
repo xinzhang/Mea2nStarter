@@ -47,23 +47,20 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(authService) {
+                    this.authService = authService;
                     this.pageTitle = "this is the first app component.";
-                    this.user = null;
                 }
                 AppComponent.prototype.ngOnInit = function () {
-                    this.user = localStorage.getItem('jwt');
-                    console.log('ngOnInit ' + this.user);
+                    this.authService.AuthorisedUser = localStorage.getItem('jwt');
                 };
                 AppComponent.prototype.signout = function () {
                     localStorage.removeItem('jwt');
-                    this.user = null;
+                    this.authService.AuthorisedUser = null;
                 };
-                AppComponent.prototype.onLoginSuccess = function (user) {
-                    this.user = user;
-                };
-                AppComponent.prototype.onRegisterSuccess = function (user) {
-                    this.user = user;
+                AppComponent.prototype.onLoginSuccess = function (message) {
+                    //this.user = user;
+                    console.log(message);
                 };
                 AppComponent = __decorate([
                     core_1.Component({
@@ -78,7 +75,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                         { path: '/register', name: 'Register', component: register_component_1.RegisterComponent },
                         { path: '/forgotPassword', name: 'ForgotPassword', component: forgotPassword_component_1.ForgotPasswordComponent }
                     ]), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService])
                 ], AppComponent);
                 return AppComponent;
             }());

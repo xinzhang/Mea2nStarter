@@ -29,7 +29,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this._http = _http;
                     this._register_url = '/auth/register';
                     this._login_url = '/auth/login';
-                    this.AuthorisedUser = "";
+                    this.AuthorisedUser = null;
                 }
                 AuthService.prototype.register = function (data) {
                     console.log('service level register ' + data);

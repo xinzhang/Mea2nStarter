@@ -1,4 +1,5 @@
 import { Component } from 'angular2/core';
+import { AuthService } from '../services/auth.service'
 
 @Component({
     templateUrl: 'app/home/welcome.component.html'
@@ -6,6 +7,9 @@ import { Component } from 'angular2/core';
 export class WelcomeComponent {
     public pageTitle: string = "Welcome";
     public searchText: string = "";
+    
+    constructor (){
+    }
     
     search() : void {
         console.log('search: ' + this.searchText);

@@ -12,8 +12,7 @@ export class RegisterComponent {
     public password: string = "";
 
     public errorMessage: string = "";
-    public userObject: any;
-
+    
     constructor(private _authService: AuthService,
                 private _router: Router) {
     }
@@ -26,18 +25,15 @@ export class RegisterComponent {
             'email': this.userEmail,
             'password': this.password
         }).subscribe(
-            user => {
-                this.userObject = user;
-                console.log(this.userObject);
-                localStorage.setItem('jwt', this.userObject.email);
+            data => {
+                localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);
-                this.REGISTER_SUCCESS.emit(this.userObject.email);
+                this._authService.AuthorisedUser = data.email;                
             },
             error => this.errorMessage = <any>error);   
         )
         
         this._router.navigate(['Welcome']);
     }
-
 
 }

@@ -27,23 +27,22 @@ import {GameService} from './services/game.service';
 ])
 export class AppComponent implements OnInit {
     pageTitle: string = "this is the first app component.";
-    user: string = null;
-
+        
+    constructor(public authService : AuthService) {        
+    }
+    
     ngOnInit(): void {
-        this.user = localStorage.getItem('jwt');
-        console.log('ngOnInit ' + this.user);
+        this.authService.AuthorisedUser = localStorage.getItem('jwt');        
     }
 
     signout(): void {
         localStorage.removeItem('jwt');
-        this.user = null;
+        this.authService.AuthorisedUser = null;
     }
 
-    onLoginSuccess(user: string): void {
-        this.user = user;
+    onLoginSuccess(message: string): void {
+        //this.user = user;
+        console.log(message);
     }
     
-    onRegisterSuccess(user: string): void {
-        this.user = user;
-    }
 }

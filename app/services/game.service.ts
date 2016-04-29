@@ -16,7 +16,7 @@ export class GameService {
 
     getNewRelease(): Observable<IGame[]> {
         
-        console.log('service level newRelease ';
+        console.log('service level newRelease ');
         
         return this._http.get(this._games_url)
             .map ( 

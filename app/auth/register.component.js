@@ -39,12 +39,10 @@ System.register(['angular2/core', 'angular2/router', '../services/auth.service']
                     this._authService.register({
                         'email': this.userEmail,
                         'password': this.password
-                    }).subscribe(function (user) {
-                        _this.userObject = user;
-                        console.log(_this.userObject);
-                        localStorage.setItem('jwt', _this.userObject.email);
+                    }).subscribe(function (data) {
+                        localStorage.setItem('jwt', data.email);
                         //this._router.navigate(['Welcome']);
-                        _this.REGISTER_SUCCESS.emit(_this.userObject.email);
+                        _this._authService.AuthorisedUser = data.email;
                     }, function (error) { return _this.errorMessage = error; });
                     this._router.navigate(['Welcome']);
                 };
