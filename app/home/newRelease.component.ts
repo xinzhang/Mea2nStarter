@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 
 import {IGame} from '../services/game';
 import {GameService} from '../services/game.service';
+import {AuthService} from '../services/auth.service';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 import { GamePlatformFilterPipe } from '../services/game-platform.filter';
 import { GameOrderFilterPipe } from '../services/game-order.filter';
@@ -23,7 +24,7 @@ export class NewReleaseComponent implements OnInit {
     platformFilter: string = '';
     orderbyFilter: string = ''; 
     
-    constructor(private _gameService: GameService) {        
+    constructor(private _gameService: GameService, private _authService: AuthService) {        
     }
     
     ngOnInit(): void {
@@ -31,7 +32,8 @@ export class NewReleaseComponent implements OnInit {
         this._gameService.getNewRelease()
             .subscribe(
                 games => this.games = games,
-                error => this.errorMessage = <any>error);;
+                error => this.errorMessage = <any>error
+            );
     }
     
     updatePlatformFilter(val:string): void {
@@ -40,6 +42,22 @@ export class NewReleaseComponent implements OnInit {
     
     orderby(val:string): void {
         this.orderbyFilter = val;
+    }
+    
+    addToCollection(g: IGame): void {
+        this._gameService.AddToMy('collection', g.gameId)
+            .subscribe(
+                data => g.quantity += 1,
+                error => this.errorMessage = <any> error  
+            );        
+    }
+    
+    addToWish(g: IGame): void {
+         this._gameService.AddToMy('wish', g.gameId)
+            .subscribe(
+                data => g.wishcount += 1,
+                error => this.errorMessage = <any> error  
+            ); 
     }
     
 }

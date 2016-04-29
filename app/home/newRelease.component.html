@@ -36,16 +36,17 @@
 
         <div class="caption">
             <h3>{{g.gameTitle}}</h3>
-            <p>{{g.platform}} - {{g.releaseDate}} - {{g.quantity}}</p>
+            
+            <p>{{g.platform}} - {{g.releaseDate}} - {{g.quantity}} / {{g.wishcount}}</p>
 
             <p>
-                <a href="#" class="btn btn-primary" role="button">
-               My collection
-            </a>
+                <a (click)="addToCollection(g)" class="btn btn-primary" role="button">
+                    My collection
+                </a>
 
-                <a href="#" class="btn btn-default" role="button">
-               My wish list
-            </a>
+                <a (click)="addToWish(g)" class="btn btn-default" role="button">
+                    My wish list
+                </a>
             </p>
 
         </div>

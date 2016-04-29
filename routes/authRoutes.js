@@ -3,9 +3,9 @@ var authRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
 
-authRouter.route('/register')
+authRouter.route('/my')
     .post(function (req, res) {
-        console.log('Register ' + req.body);
+        console.log('my ' + req.body);
 
         var url = 'mongodb://localhost:27017/MEA2N';
         mongodb.connect(url, function (err, db) {

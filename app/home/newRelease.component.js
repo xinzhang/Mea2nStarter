@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../services/game.service', 'angular2/router', '../services/game-platform.filter', '../services/game-order.filter'], function(exports_1, context_1) {
+System.register(['angular2/core', '../services/game.service', '../services/auth.service', 'angular2/router', '../services/game-platform.filter', '../services/game-order.filter'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../services/game.service', 'angular2/router',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, game_service_1, router_1, game_platform_filter_1, game_order_filter_1;
+    var core_1, game_service_1, auth_service_1, router_1, game_platform_filter_1, game_order_filter_1;
     var NewReleaseComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', '../services/game.service', 'angular2/router',
             },
             function (game_service_1_1) {
                 game_service_1 = game_service_1_1;
+            },
+            function (auth_service_1_1) {
+                auth_service_1 = auth_service_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -31,8 +34,9 @@ System.register(['angular2/core', '../services/game.service', 'angular2/router',
             }],
         execute: function() {
             NewReleaseComponent = (function () {
-                function NewReleaseComponent(_gameService) {
+                function NewReleaseComponent(_gameService, _authService) {
                     this._gameService = _gameService;
+                    this._authService = _authService;
                     this.pageTitle = "New Release";
                     this.games = [];
                     this.errorMessage = "";
@@ -45,13 +49,22 @@ System.register(['angular2/core', '../services/game.service', 'angular2/router',
                     console.log('game new release componet initialized.');
                     this._gameService.getNewRelease()
                         .subscribe(function (games) { return _this.games = games; }, function (error) { return _this.errorMessage = error; });
-                    ;
                 };
                 NewReleaseComponent.prototype.updatePlatformFilter = function (val) {
                     this.platformFilter = val;
                 };
                 NewReleaseComponent.prototype.orderby = function (val) {
                     this.orderbyFilter = val;
+                };
+                NewReleaseComponent.prototype.addToCollection = function (g) {
+                    var _this = this;
+                    this._gameService.AddToMy('collection', g.gameId)
+                        .subscribe(function (data) { return g.quantity += 1; }, function (error) { return _this.errorMessage = error; });
+                };
+                NewReleaseComponent.prototype.addToWish = function (g) {
+                    var _this = this;
+                    this._gameService.AddToMy('wish', g.gameId)
+                        .subscribe(function (data) { return g.wishcount += 1; }, function (error) { return _this.errorMessage = error; });
                 };
                 NewReleaseComponent = __decorate([
                     core_1.Component({
@@ -61,7 +74,7 @@ System.register(['angular2/core', '../services/game.service', 'angular2/router',
                         pipes: [game_platform_filter_1.GamePlatformFilterPipe, game_order_filter_1.GameOrderFilterPipe],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [game_service_1.GameService])
+                    __metadata('design:paramtypes', [game_service_1.GameService, auth_service_1.AuthService])
                 ], NewReleaseComponent);
                 return NewReleaseComponent;
             }());

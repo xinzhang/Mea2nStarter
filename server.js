@@ -10,6 +10,7 @@ var port = process.env.PORT || 4000;
 //var UserModel = require('./corlateSchema.js');
 
 var authRoutes = require('./routes/authRoutes');
+var gameRoutes = require('./routes/gameRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
@@ -25,6 +26,9 @@ app.get("/", function(req, res) {
 })
 
 app.use('/auth', authRoutes);
+app.use('/game', gameRoutes)
+
+
 
 // app.post('/Register', function(req, res){	
 // 	console.log(req.body);

@@ -8,14 +8,14 @@ import {IGame} from './game';
 @Injectable()
 export class GameService {
     //private _games_url = '/games';
-    private _games_url = 'api/products/games.json';
+    private _games_url = 'api/products/games.json';        
+    private _my_games_url = '/game';
     
     private games: IGame[] = [];  
 
     constructor(private _http: Http) { }
 
-    getNewRelease(): Observable<IGame[]> {
-        
+    getNewRelease(): Observable<IGame[]> {        
         console.log('service level newRelease ');
         
         return this._http.get(this._games_url)
@@ -36,4 +36,19 @@ export class GameService {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
+    
+    
+    AddToMy(type:string, id: number) : Observable<any> {        
+        let data = {
+            'type': type,
+            'id': id
+        };
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+        return this._http.post(this._my_games_url + '/my', JSON.stringify(data), options) 
+             .map ( resp => resp.json())
+            .catch(this.handleError);        
+    }
+
 }

@@ -27,7 +27,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
             GamesService = (function () {
                 function GamesService(_http) {
                     this._http = _http;
-                    this._games_url = '/games';
+                    this._games_url = '/game';
                     this.games = [];
                 }
                 GamesService.prototype.newRelease = function () {

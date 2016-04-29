@@ -23,8 +23,15 @@
             </ul>
                     
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="authService.AuthorisedUser != null ">
-                    <a>Welcome, {{authService.AuthorisedUser}}</a>                    
+                <li *ngIf="authService.AuthorisedUser != null " class="dropdown" id="menuWelcome">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navWelcome">
+                        Welcome, {{authService.AuthorisedUser}}
+                    </a>
+                    <div class="dropdown-menu" style="padding:17px;">                        
+                        <a style="display:block" [routerLink]="['My Collections']">My Collections</a>                        
+                        <a style="display:block" [routerLink]="['Market']">Market</a>                        
+                        <a style="display:block" [routerLink]="['Tracking']">Tracking</a>                        
+                    </div>
                 </li>
                 <li *ngIf= "authService.AuthorisedUser!=null">
                     <a (click)="signout()"><i class="glyphicon glyphicon-log-out"></i></a>
@@ -48,8 +55,7 @@
                             <input name="verify" id="inputVerify" type="password" placeholder="Password (again)" required=""><br>
                             <button type="button" id="btnRegister" class="btn">Sign Up</button>
                         </form>
-                        <a style="display:block" data-toggle="modal" role="button" [routerLink]="['ForgotPassword']">Forgot username or password?</a>
-                        
+                        <a style="display:block" data-toggle="modal" role="button" [routerLink]="['ForgotPassword']">Forgot username or password?</a>                        
                         <a class="list-style" data-toggle="modal" role="button" href="#contactModal"><small>Need help? Contact us</small></a>
                     </div>
                 </li>

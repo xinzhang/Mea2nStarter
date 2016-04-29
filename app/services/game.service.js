@@ -29,6 +29,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this._http = _http;
                     //private _games_url = '/games';
                     this._games_url = 'api/products/games.json';
+                    this._my_games_url = '/game';
                     this.games = [];
                 }
                 GameService.prototype.getNewRelease = function () {
@@ -45,6 +46,17 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                 GameService.prototype.handleError = function (error) {
                     console.error(error);
                     return Observable_1.Observable.throw(error.json().error || 'Server error');
+                };
+                GameService.prototype.AddToMy = function (type, id) {
+                    var data = {
+                        'type': type,
+                        'id': id
+                    };
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.post(this._my_games_url + '/my', JSON.stringify(data), options)
+                        .map(function (resp) { return resp.json(); })
+                        .catch(this.handleError);
                 };
                 GameService = __decorate([
                     core_1.Injectable(), 
