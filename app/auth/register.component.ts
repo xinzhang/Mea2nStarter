@@ -1,9 +1,17 @@
 import {Component, Output, EventEmitter} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
+import {
+    FormBuilder,
+    Validators,
+    Control,
+    ControlGroup,
+    FORM_DIRECTIVES
+} from 'angular2/common';
 
 import {RouteParams, Router} from 'angular2/router';
 
 import {AuthService} from '../services/auth.service';
+
+import {UsernameValidator} from '../validators/usernameValidator';
 
 @Component({
     templateUrl: 'app/auth/register.component.html',
@@ -17,15 +25,38 @@ export class RegisterComponent {
     public confirmPassword: string = "";
 
     public errorMessage: string = "";
-    
+
+    public username: Control;
+    public pw: Control;
+    public regForm: ControlGroup;
+
     constructor(private _authService: AuthService,
-                private _router: Router) {
+        private _router: Router,
+        private builder: FormBuilder) 
+    {
+        this.username = new Control(
+            "",
+            Validators.compose([Validators.required, UsernameValidator.startsWithNumber]),
+            UsernameValidator.usernameTaken
+        );
+        
+        this.pw = new Control(
+            "",
+            Validators.compose([Validators.required, Validators.minLength(4)])
+        )
+        
+        this.regForm = builder.group({
+            username: this.username,
+            pw: this.pw
+        })
+
     }
 
     @Output() REGISTER_SUCCESS = new EventEmitter();
-    
+
     register(): void {
         console.log('register ' + this.userEmail);
+        
         this._authService.register({
             'email': this.userEmail,
             'password': this.password
@@ -33,7 +64,7 @@ export class RegisterComponent {
             data => {
                 localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);
-                this._authService.AuthorisedUser = data.email;                
+                this._authService.AuthorisedUser = data.email;
             },
             error => this.errorMessage = <any>error);   
         )
