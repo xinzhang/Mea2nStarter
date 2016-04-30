@@ -28,9 +28,9 @@
                         Welcome, {{authService.AuthorisedUser}}
                     </a>
                     <div class="dropdown-menu" style="padding:17px;">                        
-                        <a style="display:block" [routerLink]="['My Collections']">My Collections</a>                        
-                        <a style="display:block" [routerLink]="['Market']">Market</a>                        
-                        <a style="display:block" [routerLink]="['Tracking']">Tracking</a>                        
+                        <a style="display:block">My Collections</a>                        
+                        <a style="display:block">Market</a>                        
+                        <a style="display:block">Tracking</a>                        
                     </div>
                 </li>
                 <li *ngIf= "authService.AuthorisedUser!=null">

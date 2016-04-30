@@ -1,42 +1,46 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div class="">
-                <div class="">
-                    <h3 class="text-center">Become a new user</h3>
-
-                </div>
-                <div class="panel-body">
-                    <!--<div class="alert alert-danger">
-                        <a class="close" data-dismiss="alert" href="#">×</a>Incorrect No!
-                    </div>-->
-                    <fieldset>                        
+            <h3 class="text-center">Become a new user</h3>
+            <div class="panel-body">
+                <form #regForm="ngForm">
+                    <fieldset>
                         <div class="form-group has-error">
-                            <input class="form-control input-lg" placeholder="E-mail Address" name="email" type="text" [(ngModel)]="userEmail" required ngControl="name" #spy>
-                            <br/> ToDO: current style: {{spy.className}}
+                            <input class="form-control input-lg" placeholder="E-mail Address" name="email" type="text" [(ngModel)]="userEmail" required
+                                ngControl="name" #name="ngForm">
+                            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                                Email is required
+                            </div>
                         </div>
                         <div class="form-group has-success">
-                            <input class="form-control input-lg" placeholder="Password" name="password" value="" type="password" [(ngModel)]="password" required ngControl="password">
+                            <input class="form-control input-lg" placeholder="Password" name="password" value="" type="password" [(ngModel)]="password"
+                                required ngControl="pw" #pw="ngForm" >
+                            <div [hidden]="pw.valid || pw.pristine" class="alert alert-danger">
+                                Password is required
+                            </div>
                         </div>
                         <div class="form-group has-success">
-                            <input class="form-control input-lg" placeholder="Confirm Password" name="password" value="" type="password"  [(ngModel)]="confirmPassword" required ngControl="confirmPassword">
+                            <input class="form-control input-lg" placeholder="Confirm Password" name="password" value="" type="password" [(ngModel)]="confirmPassword"
+                                required>
                         </div>
                         <!--<div class="form-group">
-                            <select class="form-control input-lg">
-                                <option selecterd="">Sequrity Question</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control input-lg" placeholder="Sequrity Answer" name="answer" value="" type="text">
-                        </div>-->
+                                <select class="form-control input-lg">
+                                    <option selecterd="">Sequrity Question</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control input-lg" placeholder="Sequrity Answer" name="answer" value="" type="text">
+                            </div>-->
                         <div class="checkbox">
                             <label>
-                                <input name="terms" type="checkbox">I have read and agree to the <a href="#">terms of service</a>
-                            </label>
+                                    <input name="terms" type="checkbox">I have read and agree to the <a href="#">terms of service</a>
+                                </label>
                         </div>
-                        <input class="btn btn-lg btn-primary btn-block" (click)="register()" type="submit" value="Register">
+                        <input class="btn btn-lg btn-primary btn-block"
+                            [disabled]="!regForm.form.valid"  
+                            (click)="register()" type="submit" value="Register" >
                     </fieldset>
-                </div>
+                </form>
             </div>
         </div>
     </div>

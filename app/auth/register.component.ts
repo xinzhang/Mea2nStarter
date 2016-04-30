@@ -1,12 +1,14 @@
 import {Component, Output, EventEmitter} from 'angular2/core';
-import {NgForm} from 'angular2/common';
+import {FORM_DIRECTIVES} from 'angular2/common';
 
 import {RouteParams, Router} from 'angular2/router';
 
 import {AuthService} from '../services/auth.service';
 
 @Component({
-    templateUrl: 'app/auth/register.component.html'
+    templateUrl: 'app/auth/register.component.html',
+    styleUrls: ['app/auth/register.component.css'],
+    directives: [FORM_DIRECTIVES]
 })
 
 export class RegisterComponent {
