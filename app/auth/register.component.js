@@ -30,6 +30,7 @@ System.register(['angular2/core', 'angular2/router', '../services/auth.service']
                     this._router = _router;
                     this.userEmail = "";
                     this.password = "";
+                    this.confirmPassword = "";
                     this.errorMessage = "";
                     this.REGISTER_SUCCESS = new core_1.EventEmitter();
                 }

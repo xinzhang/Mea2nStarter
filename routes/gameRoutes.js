@@ -9,8 +9,11 @@ gameRouter.route('/my')
         if (!req.user) {
             //res.redirect('/');
             console.log('req user is not defined.');
+            res.status(401).send("please login first");
         }
-        next();
+        else {        
+            next();
+        }
     })
     .post(function (req, res) {
         console.log('my ' + JSON.stringify(req.body));        

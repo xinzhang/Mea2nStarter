@@ -1,4 +1,6 @@
 import {Component, Output, EventEmitter} from 'angular2/core';
+import {NgForm} from 'angular2/common';
+
 import {RouteParams, Router} from 'angular2/router';
 
 import {AuthService} from '../services/auth.service';
@@ -10,6 +12,7 @@ import {AuthService} from '../services/auth.service';
 export class RegisterComponent {
     public userEmail: string = "";
     public password: string = "";
+    public confirmPassword: string = "";
 
     public errorMessage: string = "";
     

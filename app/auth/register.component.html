@@ -12,13 +12,14 @@
                     </div>-->
                     <fieldset>                        
                         <div class="form-group has-error">
-                            <input class="form-control input-lg" placeholder="E-mail Address" name="email" type="text" [(ngModel)]="userEmail">
+                            <input class="form-control input-lg" placeholder="E-mail Address" name="email" type="text" [(ngModel)]="userEmail" required ngControl="name" #spy>
+                            <br/> ToDO: current style: {{spy.className}}
                         </div>
                         <div class="form-group has-success">
-                            <input class="form-control input-lg" placeholder="Password" name="password" value="" type="password" [(ngModel)]="password">
+                            <input class="form-control input-lg" placeholder="Password" name="password" value="" type="password" [(ngModel)]="password" required ngControl="password">
                         </div>
                         <div class="form-group has-success">
-                            <input class="form-control input-lg" placeholder="Confirm Password" name="password" value="" type="password">
+                            <input class="form-control input-lg" placeholder="Confirm Password" name="password" value="" type="password"  [(ngModel)]="confirmPassword" required ngControl="confirmPassword">
                         </div>
                         <!--<div class="form-group">
                             <select class="form-control input-lg">
