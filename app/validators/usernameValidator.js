@@ -14,20 +14,15 @@ System.register([], function(exports_1, context_1) {
                     if (control.value != "" &&
                         //((code >= 65) && (code <= 90)) || ((code >= 97) && (code <= 122))
                         !isNaN(code)) {
-                        console.log('startswith number true');
-                        return { 
-                            "startsWithNumber": true 
-                        };
+                        return { "startsWithNumber": true };
                     }
                     return null;
                 };
-                
                 UsernameValidator.usernameTaken = function (control) {
                     console.log('username taken validation');
                     return new Promise(function (resolve, reject) {
                         setTimeout(function () {
                             if (control.value === "David") {
-                                console.log('usernametake true');
                                 resolve({ "usernameTaken": true });
                             }
                             else {

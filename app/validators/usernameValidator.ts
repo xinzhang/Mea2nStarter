@@ -7,8 +7,8 @@ interface ValidationResult {
 export class UsernameValidator {
 
     static startsWithNumber(control: Control): ValidationResult {
-        var code = control.value.charCodeAt(0);
-        console.log('starts with Number validation');
+        var code = control.value.charAt(0);
+        console.log('starts with Number validation ' + code);
         if (control.value != "" &&
             //((code >= 65) && (code <= 90)) || ((code >= 97) && (code <= 122))
             !isNaN(code)
