@@ -21,12 +21,14 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "font-awesome": "^4.6.1",
+    "mongodb": "^2.1.18",
     "mongoose": "^4.4.9",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.26",
+    "util": "^0.10.3",
     "zone.js": "0.6.10"
   },
   "devDependencies": {
@@ -35,8 +37,7 @@
     "gulp-nodemon": "^2.0.6",
     "lite-server": "^2.2.0",
     "typescript": "^1.8.10",
-    "typings": "^0.7.12",
-    "util": "^0.10.3"
+    "typings": "^0.7.12"
   },
   "repository": {}
 }

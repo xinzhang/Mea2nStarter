@@ -16,7 +16,7 @@
                                 <p *ngIf="username.errors.usernameTaken">This username is taken</p>
                             </div>
                         </div>
-                        <div class="form-group has-success">
+                        <div class="form-group has-error">
                             <input class="form-control input-lg" placeholder="Password" name="password" value="" type="password" [(ngModel)]="password"
                                 [ngFormControl]="pw">
                             <!--<div [hidden]="pw.valid || pw.pristine" class="alert alert-danger">
@@ -27,7 +27,7 @@
                                 <p *ngIf="pw.errors.minlength">password minium length is 4.</p>
                             </div>
                         </div>
-                        <div class="form-group has-success">
+                        <div class="form-group has-error">
                             <input class="form-control input-lg" placeholder="Confirm Password" name="password" value="" type="password" [(ngModel)]="confirmPassword"
                                 required>
                         </div>
