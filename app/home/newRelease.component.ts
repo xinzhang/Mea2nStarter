@@ -53,7 +53,7 @@ export class NewReleaseComponent implements OnInit {
     }
     
     addToWish(g: IGame): void {
-         this._gameService.AddToMy('wish', g.gameId)
+         this._gameService.AddToMy('wishlist', g.gameId)
             .subscribe(
                 data => g.wishcount += 1,
                 error => this.errorMessage = <any> error  

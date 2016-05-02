@@ -2,8 +2,9 @@ var express = require('express');
 var authRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
+var util = require('util');
 
-authRouter.route('/my')
+authRouter.route('/register')
     .post(function (req, res) {
         console.log('my ' + req.body);
 
@@ -44,7 +45,7 @@ authRouter.route('/login')
         failureredirect: '/'
     }), function (req, res) {
         //res.redirect('/auth/profile');
-        res.json(req.body);
+        res.json(req.user);
     });
 
 module.exports = authRouter;

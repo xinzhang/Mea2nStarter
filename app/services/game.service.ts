@@ -6,9 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {IGame} from './game';
 
 @Injectable()
-export class GameService {
-    //private _games_url = '/games';
-    //private _games_url = 'api/products/games.json';        
+export class GameService {                
     private _newRelease_games_url = '/game/newRelease';
     private _my_games_url = '/game';
     

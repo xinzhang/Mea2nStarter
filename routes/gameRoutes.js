@@ -28,15 +28,37 @@ gameRouter.route('/my')
             },
 
                 function (err, results) {
+                    var user = results;
+                    var id = req.body.id;
+
                     if (req.body.type == 'collection') {
+                        console.log('come to my collection');
+                        if (user.collection == null)
+                            user.collection = [];
+
+                        user.collection.push(id);
 
                     }
 
-                    if (req.body.type == 'collection') {
+                    if (req.body.type == 'wishlist') {
+                        console.log('come to my wishlist');
+
+                        if (user.wishlist == null)
+                            user.wishlist = [];
+
+                        user.wishlist.push(id);
 
                     }
-
-                    res.send(req.user);
+                                       
+                    collection.updateOne(
+                        {"_id": user._id},
+                        {
+                            $set: {"collection" : user.collection, "wishlist":user.wishlist},                            
+                        }, function(err, results) {
+                            console.log("udpated; " + JSON.stringify(results));
+                            res.send(user);
+                        }
+                    )
                 }
 
             ); //end findOne     
@@ -56,17 +78,17 @@ gameRouter.route('/newRelease')
             var collection = db.collection('games');
             collection.find({}, function (err, cursor) {
                 if (err) res.status(400).send(err.errorMessage);
-                var docs=[];
-                cursor.each(function(err, item){                    
+                var docs = [];
+                cursor.each(function (err, item) {
                     if (err || !item) {
-                        res.status(200).send(docs);    
+                        res.status(200).send(docs);
                         db.close();
                     }
                     else {
                         docs.push(item);
                     }
                 })
-                
+
             }); //end find
         });
 

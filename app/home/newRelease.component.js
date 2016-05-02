@@ -63,7 +63,7 @@ System.register(['angular2/core', '../services/game.service', '../services/auth.
                 };
                 NewReleaseComponent.prototype.addToWish = function (g) {
                     var _this = this;
-                    this._gameService.AddToMy('wish', g.gameId)
+                    this._gameService.AddToMy('wishlist', g.gameId)
                         .subscribe(function (data) { return g.wishcount += 1; }, function (error) { return _this.errorMessage = error; });
                 };
                 NewReleaseComponent = __decorate([

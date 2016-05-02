@@ -27,8 +27,6 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
             GameService = (function () {
                 function GameService(_http) {
                     this._http = _http;
-                    //private _games_url = '/games';
-                    //private _games_url = 'api/products/games.json';        
                     this._newRelease_games_url = '/game/newRelease';
                     this._my_games_url = '/game';
                     this.games = [];

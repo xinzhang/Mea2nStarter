@@ -12,43 +12,30 @@ fs.readFile('./products/games.json', 'utf-8', function (err, data) {
 
         var collection = db.collection('games');
 
-        for (var i = 0; i < jsonObj.length; i++) {
-            var jsonGameObj = jsonObj[i];
+        jsonObj.forEach(function (val) {
+            var jsonGameObj = val;
 
             collection.findOne({ gameTitle: jsonGameObj.gameTitle }, function (err, doc) {
-                // if (doc != null) {
-                //     console.log("doc " + doc);                        
-                // }
-                
-                // if (doc != null && doc._id != null) {
-                //     console.log("doc id " + doc._id);
-                // }
-                
-                // if (doc == null || doc._id == null ) {
-                //      collection.insert(jsonObj, function (err, result) {
-                //          if (err) throw err;
-                //          console.log(result);
-                //      })
-                //     //console.log( i +  ' - try to run insert ' + jsonGameObj.gameTitle);
-                // }
-
+                if (doc == null || doc._id == null) {
+                    console.log(' - try to run insert ' + jsonGameObj.gameTitle);
+                    var doc = jsonGameObj;
+                    collection.insertOne(doc, function (err, result) {
+                        if (err) throw err;
+                        console.log(JSON.stringify(result));
+                    })
+                }
             });
 
-             collection.findAndModify({
-                 query: { gameTitle: jsonGameObj.gameTitle },
-                 update: {
-                     $setOnInsert: { jsonGameObj}
-                 },
-                 new: true,   // return new doc if one is upserted
-                 upsert: true // insert the document if it does not exist
-             }, function(err, result){
-             });
-
-            //  collection.insert(jsonObj, function (err, result) {
-            //      if (err) throw err;
-            //      console.log(result);
+            //  collection.findAndModify({
+            //      query: { gameTitle: jsonGameObj.gameTitle },
+            //      update: {
+            //          $setOnInsert: { jsonGameObj}
+            //      },
+            //      new: true,   // return new doc if one is upserted
+            //      upsert: true // insert the document if it does not exist
+            //  }, function(err, result){
             //  });
-        }
+        });
 
     });
 });
