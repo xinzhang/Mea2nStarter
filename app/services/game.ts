@@ -1,4 +1,5 @@
 export interface IGame {
+    //_id: string;
     gameId: number;
     isin: string;
     gameTitle: string;    

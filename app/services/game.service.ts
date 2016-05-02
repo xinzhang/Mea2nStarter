@@ -8,7 +8,8 @@ import {IGame} from './game';
 @Injectable()
 export class GameService {
     //private _games_url = '/games';
-    private _games_url = 'api/products/games.json';        
+    //private _games_url = 'api/products/games.json';        
+    private _newRelease_games_url = '/game/newRelease';
     private _my_games_url = '/game';
     
     private games: IGame[] = [];  
@@ -18,7 +19,7 @@ export class GameService {
     getNewRelease(): Observable<IGame[]> {        
         console.log('service level newRelease ');
         
-        return this._http.get(this._games_url)
+        return this._http.get(this._newRelease_games_url)
             .map ( 
                 (resp: Response) => <IGame[]>resp.json()
             )

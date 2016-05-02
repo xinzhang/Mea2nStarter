@@ -7,6 +7,9 @@
         "**/app/home/*.js": true,
         "**/app/auth/*.js": true,        
         "**/app/services/*.js": true,
+        "**/app/validators/*.js": true,
+        "**/app/shared/*.js": true,
+        "**/app/game/*.js": true,
         "**/*.map":true
     }, 
     "files.autoSave": "afterDelay"
