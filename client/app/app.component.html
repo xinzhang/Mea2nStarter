@@ -36,6 +36,11 @@
                 <li *ngIf= "authService.AuthorisedUser!=null">
                     <a (click)="signout()"><i class="glyphicon glyphicon-log-out"></i></a>
                 </li>
+                <li id="menuRegister" *ngIf="authService.AuthorisedUser==null">
+                    <a [routerLink]="['Register']" title="Fast and free sign up!" id="navRegister">
+                        <span class="glyphicon glyphicon-registration-mark"></span> Register
+                    </a>
+                </li>                
                 <li class="dropdown" id="menuLogin" *ngIf="authService.AuthorisedUser==null">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
                         <span class="glyphicon glyphicon-log-in"></span> Login
@@ -46,7 +51,7 @@
                         <form class="form dropdown-login">
                             <a [routerLink]="['Register']" title="Fast and free sign up!" id="btnNewUser" data-toggle="collapse">New User? Sign-up..</a>
                         </form>
-                        <form id="formRegister" class="form dropdown-login collapse">
+                        <!--<form id="formRegister" class="form dropdown-login collapse">
                             <input name="_csrf" id="token" type="hidden" value="4mUqko6l-1VDLKoFLqLZZ0o-A9x0IfRRMlkg">
                             <input name="email" id="inputEmail" type="email" placeholder="Email" required="">
                             <input name="username" id="inputUsername" type="text" placeholder="Username" pattern="^[a-z,A-Z,0-9,_]{6,15}$" data-valid-min="6"
@@ -54,7 +59,7 @@
                             <input name="password" id="inputpassword" type="password" placeholder="Password" required="">
                             <input name="verify" id="inputVerify" type="password" placeholder="Password (again)" required=""><br>
                             <button type="button" id="btnRegister" class="btn">Sign Up</button>
-                        </form>
+                        </form>-->
                         <a style="display:block" data-toggle="modal" role="button" [routerLink]="['ForgotPassword']">Forgot username or password?</a>                        
                         <a class="list-style" data-toggle="modal" role="button" href="#contactModal"><small>Need help? Contact us</small></a>
                     </div>

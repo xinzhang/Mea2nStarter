@@ -34,11 +34,11 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        this.authService.AuthorisedUser = localStorage.getItem('jwt');        
+        //this.authService.AuthorisedUser = localStorage.getItem('jwt');        
     }
 
     signout(): void {
-        localStorage.removeItem('jwt');
+        //localStorage.removeItem('jwt');
         this.authService.AuthorisedUser = null;
     }
 

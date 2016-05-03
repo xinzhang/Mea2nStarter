@@ -27,7 +27,7 @@ export class LoginComponent {
            'password': this.password 
         }).subscribe(
             data => {                 
-                localStorage.setItem('jwt', data.email);
+                //localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);
                 this._authService.AuthorisedUser = data.email;
                 this.LOGIN_SUCCESS.emit("login success message");
