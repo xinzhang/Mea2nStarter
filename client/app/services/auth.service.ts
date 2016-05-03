@@ -19,8 +19,6 @@ export class AuthService {
 
     register(data: any): Observable<any> {
         
-        console.log('service level register ' + data);
-        
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
@@ -29,9 +27,8 @@ export class AuthService {
             .catch(this.handleError);
     }
 
-    login(data: any): Observable<any> {        
-        console.log('service level login ' + data);
-        
+    login(data: any): Observable<any> {
+                
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         

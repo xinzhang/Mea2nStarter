@@ -17,13 +17,9 @@ const params = {
     'ResponseGroup': 'Images,ItemAttributes,Offers'
 }
 
-opHelper.execute(operation, params).then((results, responseBody) => {
-    console.log('------')
-    console.log(results)
-    
+opHelper.execute(operation, params).then((results, responseBody) => {    
     console.log(responseBody)
-}).catch((err) => {
-    console.log('------')
+}).catch((err) => {    
     console.error(err)
 })
 

@@ -34,7 +34,6 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this.isUserLogin = false;
                 }
                 AuthService.prototype.register = function (data) {
-                    console.log('service level register ' + data);
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     return this._http.post(this._register_url, JSON.stringify(data), options)
@@ -42,7 +41,6 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                         .catch(this.handleError);
                 };
                 AuthService.prototype.login = function (data) {
-                    console.log('service level login ' + data);
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     return this._http.post(this._login_url, JSON.stringify(data), options)

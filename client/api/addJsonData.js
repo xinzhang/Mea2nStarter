@@ -17,7 +17,7 @@ fs.readFile('./products/games.json', 'utf-8', function (err, data) {
 
             collection.findOne({ gameTitle: jsonGameObj.gameTitle }, function (err, doc) {
                 if (doc == null || doc._id == null) {
-                    console.log(' - try to run insert ' + jsonGameObj.gameTitle);
+
                     var doc = jsonGameObj;
                     collection.insertOne(doc, function (err, result) {
                         if (err) throw err;

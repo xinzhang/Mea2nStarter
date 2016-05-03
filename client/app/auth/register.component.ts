@@ -42,7 +42,7 @@ export class RegisterComponent {
         
         this.pw = new Control(
             "",
-            Validators.compose([Validators.required, Validators.minLength(4)])
+            Validators.compose([Validators.required, Validators.minLength(3)])
         )
         
         this.regForm = builder.group({
@@ -63,9 +63,9 @@ export class RegisterComponent {
         }).subscribe(
             data => {
                 localStorage.setItem('jwt', data.email);
-                //this._router.navigate(['Welcome']);
-                this._authService.CurrentUser = data;
+                //this._router.navigate(['Welcome']);                
                 this._authService.AuthorisedUser = data.email;
+                this._authService.setAuthorisedUserData(data);
             },
             error => this.errorMessage = <any>error);   
         )

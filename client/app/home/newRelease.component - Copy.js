@@ -46,6 +46,7 @@ System.register(['angular2/core', '../services/game.service', '../services/auth.
                 }
                 NewReleaseComponent.prototype.ngOnInit = function () {
                     var _this = this;
+                    console.log('user login or not' + this._authService.AuthorisedUser);
                     this._gameService.getNewRelease()
                         .subscribe(function (games) { return _this.games = games; }, function (error) { return _this.errorMessage = error; });
                 };
@@ -100,4 +101,4 @@ System.register(['angular2/core', '../services/game.service', '../services/auth.
         }
     }
 });
-//# sourceMappingURL=newRelease.component.js.map
+//# sourceMappingURL=newRelease.component - Copy.js.map

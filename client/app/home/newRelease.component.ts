@@ -28,7 +28,7 @@ export class NewReleaseComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        console.log('user login or not' + this._authService.AuthorisedUser);
+
         this._gameService.getNewRelease()
             .subscribe(
                 games => this.games = games,
@@ -58,13 +58,14 @@ export class NewReleaseComponent implements OnInit {
          this._gameService.AddToMy('wishlist', g.gameId)
             .subscribe(
                 data => {
-                    this._authService.CurrentUser.myWishlist.push(g.gameId);
+                    this._authService.CurrentUser.myWishlist.push(g.gameId);                    
                 },
                 error => this.errorMessage = <any> error  
             ); 
     }
     
     isInMy(type: string, gameId: number) {
+        
         if (this._authService.CurrentUser == null)
             return false;
         

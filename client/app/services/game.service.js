@@ -28,13 +28,28 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                 function GameService(_http) {
                     this._http = _http;
                     this._newRelease_games_url = '/game/newRelease';
+                    this._myCollection_games_url = '/game/my/collection';
+                    this._myWishlist_games_url = '/game/my/wishlist';
                     this._my_games_url = '/game';
                     this.games = [];
                 }
                 GameService.prototype.getNewRelease = function () {
                     var _this = this;
-                    console.log('service level newRelease ');
                     return this._http.get(this._newRelease_games_url)
+                        .map(function (resp) { return resp.json(); })
+                        .do(function (data) { return _this.games = data; })
+                        .catch(this.handleError);
+                };
+                GameService.prototype.getMyGames = function (type) {
+                    var _this = this;
+                    var _endpoint_url = '';
+                    if (type == "collection") {
+                        _endpoint_url = this._myCollection_games_url;
+                    }
+                    else if (type == "wishlist") {
+                        _endpoint_url = this._myWishlist_games_url;
+                    }
+                    return this._http.get(_endpoint_url)
                         .map(function (resp) { return resp.json(); })
                         .do(function (data) { return _this.games = data; })
                         .catch(this.handleError);

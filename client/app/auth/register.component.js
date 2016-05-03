@@ -41,7 +41,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                     this.errorMessage = "";
                     this.REGISTER_SUCCESS = new core_1.EventEmitter();
                     this.username = new common_1.Control("", common_1.Validators.compose([common_1.Validators.required, usernameValidator_1.UsernameValidator.startsWithNumber]), usernameValidator_1.UsernameValidator.usernameTaken);
-                    this.pw = new common_1.Control("", common_1.Validators.compose([common_1.Validators.required, common_1.Validators.minLength(4)]));
+                    this.pw = new common_1.Control("", common_1.Validators.compose([common_1.Validators.required, common_1.Validators.minLength(3)]));
                     this.regForm = builder.group({
                         username: this.username,
                         pw: this.pw
@@ -55,9 +55,9 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                         'password': this.password
                     }).subscribe(function (data) {
                         localStorage.setItem('jwt', data.email);
-                        //this._router.navigate(['Welcome']);
-                        _this._authService.CurrentUser = data;
+                        //this._router.navigate(['Welcome']);                
                         _this._authService.AuthorisedUser = data.email;
+                        _this._authService.setAuthorisedUserData(data);
                     }, function (error) { return _this.errorMessage = error; });
                     this._router.navigate(['Welcome']);
                 };

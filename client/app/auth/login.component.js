@@ -35,18 +35,13 @@ System.register(['angular2/core', 'angular2/router', '../services/auth.service']
                 }
                 LoginComponent.prototype.login = function () {
                     var _this = this;
-                    console.log('login ' + this.userEmail + "-" + this.password);
                     this._authService.login({
                         'email': this.userEmail,
                         'password': this.password
                     }).subscribe(function (data) {
                         //localStorage.setItem('jwt', data.email);
                         //this._router.navigate(['Welcome']);
-                        //this._authService.CurrentUser.email = data.email;
-                        //this._authService.CurrentUser.myCollection  = data.collection;
-                        //this._authService.CurrentUser.myWishlist  = data.wishlist;
                         _this._authService.AuthorisedUser = data.email;
-                        console.log('user returned ' + JSON.stringify(data));
                         _this._authService.setAuthorisedUserData(data);
                         _this.LOGIN_SUCCESS.emit("login success message");
                     }, function (error) { return _this.errorMessage = error; });

@@ -5,6 +5,7 @@ import 'rxjs/Rx'; //load all features
 
 import {WelcomeComponent} from './home/welcome.component';
 import {NewReleaseComponent} from './home/newRelease.component';
+import {MyGamesComponent} from './home/myGames.component';
 
 import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
@@ -24,6 +25,7 @@ import {GameService} from './services/game.service';
 @RouteConfig([
     { path: '/welcome', name: 'Welcome', component: WelcomeComponent, useAsDefault: true },
     { path: '/newRelease', name: 'NewRelease', component: NewReleaseComponent },
+    { path: '/myGames', name: 'MyGames', component: MyGamesComponent },
     { path: '/register', name: 'Register', component: RegisterComponent },
     { path: '/forgotPassword', name: 'ForgotPassword', component: ForgotPasswordComponent }
 ])

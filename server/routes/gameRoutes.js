@@ -32,7 +32,7 @@ gameRouter.route('/my')
                     var id = req.body.id;
 
                     if (req.body.type == 'collection') {
-                        console.log('come to my collection');
+
                         if (user.collection == null)
                             user.collection = [];
 
@@ -41,7 +41,6 @@ gameRouter.route('/my')
                     }
 
                     if (req.body.type == 'wishlist') {
-                        console.log('come to my wishlist');
 
                         if (user.wishlist == null)
                             user.wishlist = [];
@@ -49,16 +48,74 @@ gameRouter.route('/my')
                         user.wishlist.push(id);
 
                     }
-                                       
+
                     collection.updateOne(
-                        {"_id": user._id},
+                        { "_id": user._id },
                         {
-                            $set: {"collection" : user.collection, "wishlist":user.wishlist},                            
-                        }, function(err, results) {
-                            console.log("udpated; " + JSON.stringify(results));
+                            $set: { "collection": user.collection, "wishlist": user.wishlist },
+                        }, function (err, results) {
                             res.send(user);
                         }
                     )
+                }
+
+            ); //end findOne     
+        });
+
+    });
+
+gameRouter.route('/my/:type')
+    .all(function (req, res, next) {
+        if (!req.user) {
+            //res.redirect('/');
+            console.log('req user is not defined.');
+            res.status(401).send("please login first");
+        }
+        else {
+            next();
+        }
+    })
+    .get(function (req, res) {
+        console.log('my ' + req.params.type);
+        console.log('my user:' + JSON.stringify(req.user));
+
+        var url = 'mongodb://localhost:27017/MEA2N';
+        mongodb.connect(url, function (err, db) {
+
+            var collection = db.collection('users');
+            collection.findOne({
+                email: req.user.email
+            },
+                function (err, results) {
+                    var user = results;
+                    var id = req.body.id;
+
+                    var gameIDS = [];
+
+                    if (req.params.type == 'collection') {
+                        gameIDS = user.collection;
+                    }
+
+                    if (req.params.type == 'wishlist') {
+                        gameIDS = user.wishlist;
+                    }
+
+                    db.collection('games').find({
+                        gameId: {$in: gameIDS}
+                    }, function (err, cursor) {
+                        if (err) res.status(400).send(err.errorMessage);
+                        var docs = [];
+                        cursor.each(function (err, item) {
+                            if (err || !item) {
+                                res.status(200).send(docs);
+                                db.close();
+                            }
+                            else {
+                                docs.push(item);
+                            }
+                        })
+                    })
+
                 }
 
             ); //end findOne     

@@ -12,8 +12,6 @@ fs.readFile( __dirname + '/awsResponse.xml', 'utf8', function(err, data){
 		}
 		
 		//console.dir(JSON.stringify(result));
-
-		console.log(result.)
 	});	
 
 });

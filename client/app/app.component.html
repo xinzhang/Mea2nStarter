@@ -25,10 +25,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="authService.AuthorisedUser != null " class="dropdown" id="menuWelcome">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navWelcome">
-                        Welcome, {{authService.AuthorisedUser}}
+                        Welcome, {{authService.CurrentUser.email}}
                     </a>
                     <div class="dropdown-menu" style="padding:17px;">                        
-                        <a style="display:block">My Collections</a>                        
+                        <a [routerLink]="['MyGames']" style="display:block">My Collections</a>                        
                         <a style="display:block">Market</a>                        
                         <a style="display:block">Tracking</a>                        
                     </div>
