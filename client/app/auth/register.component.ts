@@ -64,6 +64,7 @@ export class RegisterComponent {
             data => {
                 localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);
+                this._authService.CurrentUser = data;
                 this._authService.AuthorisedUser = data.email;
             },
             error => this.errorMessage = <any>error);   

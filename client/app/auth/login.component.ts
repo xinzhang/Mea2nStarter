@@ -12,7 +12,8 @@ export class LoginComponent {
     public userEmail : string = "";
     public password : string = "";
     
-    public errorMessage: string = "";            
+    public errorMessage: string = "";
+                  
     constructor(private _authService : AuthService, 
                 private _router: Router) {        
     }
@@ -29,9 +30,15 @@ export class LoginComponent {
             data => {                 
                 //localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);
+                
+                //this._authService.CurrentUser.email = data.email;
+                //this._authService.CurrentUser.myCollection  = data.collection;
+                //this._authService.CurrentUser.myWishlist  = data.wishlist;
                 this._authService.AuthorisedUser = data.email;
-                this.LOGIN_SUCCESS.emit("login success message");
-                                
+                console.log('user returned ' + JSON.stringify(data));
+                this._authService.setAuthorisedUserData(data);
+                                                                
+                this.LOGIN_SUCCESS.emit("login success message");                                
             },
             error => this.errorMessage = <any>error);
         )         

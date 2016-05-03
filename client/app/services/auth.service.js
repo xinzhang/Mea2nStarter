@@ -30,6 +30,8 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this._register_url = '/auth/register';
                     this._login_url = '/auth/login';
                     this.AuthorisedUser = null;
+                    this.CurrentUser = null;
+                    this.isUserLogin = false;
                 }
                 AuthService.prototype.register = function (data) {
                     console.log('service level register ' + data);
@@ -46,6 +48,17 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     return this._http.post(this._login_url, JSON.stringify(data), options)
                         .map(function (resp) { return resp.json(); })
                         .catch(this.handleError);
+                };
+                AuthService.prototype.setAuthorisedUserData = function (data) {
+                    this.CurrentUser = {
+                        email: data.email,
+                        myCollection: data.collection,
+                        myWishlist: data.wishlist
+                    };
+                    if (this.CurrentUser.myCollection == null)
+                        this.CurrentUser.myCollection = [];
+                    if (this.CurrentUser.myWishlist == null)
+                        this.CurrentUser.myWishlist = [];
                 };
                 AuthService.prototype.handleError = function (error) {
                     console.error(error);

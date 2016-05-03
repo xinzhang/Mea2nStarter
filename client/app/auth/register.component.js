@@ -56,6 +56,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                     }).subscribe(function (data) {
                         localStorage.setItem('jwt', data.email);
                         //this._router.navigate(['Welcome']);
+                        _this._authService.CurrentUser = data;
                         _this._authService.AuthorisedUser = data.email;
                     }, function (error) { return _this.errorMessage = error; });
                     this._router.navigate(['Welcome']);

@@ -39,13 +39,15 @@
             
             <p>{{g.platform}} - {{g.releaseDate}} - {{g.quantity}} / {{g.wishcount}}</p>
 
-            <p>
-                <a (click)="addToCollection(g)" class="btn btn-primary" role="button">
-                    My collection
+            <p *ngIf= "_authService.AuthorisedUser!=null">
+                <a *ngIf="!isInMy('collection', g.gameId)" (click)="addToCollection(g)" class="btn btn-primary" role="button">
+                    <i class="glyphicon glyphicon-plus"></i>My collection
+                    {{isInMy('collection', g.gameId)}}
                 </a>
 
-                <a (click)="addToWish(g)" class="btn btn-default" role="button">
-                    My wish list
+                <a *ngIf="!isInMy('wishlist', g.gameId)" (click)="addToWish(g)" class="btn btn-default" role="button">
+                    <i class="glyphicon glyphicon-plus"></i>My wish list
+                    {{isInMy('wishlist', g.gameId)}}
                 </a>
             </p>
 

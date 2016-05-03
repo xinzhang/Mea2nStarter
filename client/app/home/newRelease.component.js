@@ -46,7 +46,7 @@ System.register(['angular2/core', '../services/game.service', '../services/auth.
                 }
                 NewReleaseComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    console.log('game new release componet initialized.');
+                    console.log('user login or not' + this._authService.AuthorisedUser);
                     this._gameService.getNewRelease()
                         .subscribe(function (games) { return _this.games = games; }, function (error) { return _this.errorMessage = error; });
                 };
@@ -59,12 +59,31 @@ System.register(['angular2/core', '../services/game.service', '../services/auth.
                 NewReleaseComponent.prototype.addToCollection = function (g) {
                     var _this = this;
                     this._gameService.AddToMy('collection', g.gameId)
-                        .subscribe(function (data) { return g.quantity += 1; }, function (error) { return _this.errorMessage = error; });
+                        .subscribe(function (data) {
+                        _this._authService.CurrentUser.myCollection.push(g.gameId);
+                    }, function (error) { return _this.errorMessage = error; });
                 };
                 NewReleaseComponent.prototype.addToWish = function (g) {
                     var _this = this;
                     this._gameService.AddToMy('wishlist', g.gameId)
-                        .subscribe(function (data) { return g.wishcount += 1; }, function (error) { return _this.errorMessage = error; });
+                        .subscribe(function (data) {
+                        _this._authService.CurrentUser.myWishlist.push(g.gameId);
+                    }, function (error) { return _this.errorMessage = error; });
+                };
+                NewReleaseComponent.prototype.isInMy = function (type, gameId) {
+                    if (this._authService.CurrentUser == null)
+                        return false;
+                    if (type == 'collection') {
+                        if (this._authService.CurrentUser.myCollection == null || this._authService.CurrentUser.myCollection.length == 0)
+                            return false;
+                        return (this._authService.CurrentUser.myCollection.indexOf(gameId) > -1);
+                    }
+                    if (type == 'wishlist') {
+                        if (this._authService.CurrentUser.myWishlist == null || this._authService.CurrentUser.myWishlist.length == 0)
+                            return false;
+                        return (this._authService.CurrentUser.myWishlist.indexOf(gameId) > -1);
+                    }
+                    return false;
                 };
                 NewReleaseComponent = __decorate([
                     core_1.Component({

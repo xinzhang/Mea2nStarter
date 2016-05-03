@@ -28,7 +28,7 @@ export class NewReleaseComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        console.log('game new release componet initialized.');
+        console.log('user login or not' + this._authService.AuthorisedUser);
         this._gameService.getNewRelease()
             .subscribe(
                 games => this.games = games,
@@ -47,7 +47,9 @@ export class NewReleaseComponent implements OnInit {
     addToCollection(g: IGame): void {
         this._gameService.AddToMy('collection', g.gameId)
             .subscribe(
-                data => g.quantity += 1,
+                data => {                    
+                    this._authService.CurrentUser.myCollection.push(g.gameId);
+                },
                 error => this.errorMessage = <any> error  
             );        
     }
@@ -55,9 +57,32 @@ export class NewReleaseComponent implements OnInit {
     addToWish(g: IGame): void {
          this._gameService.AddToMy('wishlist', g.gameId)
             .subscribe(
-                data => g.wishcount += 1,
+                data => {
+                    this._authService.CurrentUser.myWishlist.push(g.gameId);
+                },
                 error => this.errorMessage = <any> error  
             ); 
+    }
+    
+    isInMy(type: string, gameId: number) {
+        if (this._authService.CurrentUser == null)
+            return false;
+        
+        if (type == 'collection') {
+            if (this._authService.CurrentUser.myCollection == null || this._authService.CurrentUser.myCollection.length == 0)
+                return false;
+            
+            return (this._authService.CurrentUser.myCollection.indexOf(gameId) > -1)
+        }
+        
+        if (type == 'wishlist') {
+            if (this._authService.CurrentUser.myWishlist== null || this._authService.CurrentUser.myWishlist.length == 0)
+                return false;
+            
+            return (this._authService.CurrentUser.myWishlist.indexOf(gameId) > -1)            
+        }
+        
+        return false;
     }
     
 }
