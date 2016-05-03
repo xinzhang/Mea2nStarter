@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './services/auth.service', './services/game.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './attributes/highlight.directive', './services/auth.service', './services/game.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, register_component_1, login_component_1, forgotPassword_component_1, auth_service_1, game_service_1;
+    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, register_component_1, login_component_1, forgotPassword_component_1, highlight_directive_1, auth_service_1, game_service_1;
     var AppComponent;
     return {
         setters:[
@@ -39,6 +39,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             function (forgotPassword_component_1_1) {
                 forgotPassword_component_1 = forgotPassword_component_1_1;
             },
+            function (highlight_directive_1_1) {
+                highlight_directive_1 = highlight_directive_1_1;
+            },
             function (auth_service_1_1) {
                 auth_service_1 = auth_service_1_1;
             },
@@ -66,7 +69,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES, login_component_1.LoginComponent],
+                        directives: [router_1.ROUTER_DIRECTIVES, login_component_1.LoginComponent, highlight_directive_1.HighlightDirective],
                         providers: [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, auth_service_1.AuthService, game_service_1.GameService]
                     }),
                     router_1.RouteConfig([

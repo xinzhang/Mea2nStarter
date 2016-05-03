@@ -10,13 +10,15 @@ import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
 import {ForgotPasswordComponent} from './auth/forgotPassword.component';
 
+import {HighlightDirective} from './attributes/highlight.directive';
+
 import {AuthService} from './services/auth.service';
 import {GameService} from './services/game.service';
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
-    directives: [ROUTER_DIRECTIVES, LoginComponent],
+    directives: [ROUTER_DIRECTIVES, LoginComponent, HighlightDirective],
     providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, GameService]
 })
 @RouteConfig([
