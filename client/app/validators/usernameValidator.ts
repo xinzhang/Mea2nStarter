@@ -38,7 +38,6 @@ export class UsernameValidator {
                 } else {
                     resolve(null);
                 };
-
             }, 1000);
         });
     }
