@@ -10,8 +10,14 @@ import {PaymentService} from '../services/payment.service';
 })
 export class PaymentComponent {
     public pageTitle : string = "Setup your payment";
-    public userEmail : string = "";
-    public password : string = "";
+    public card = {
+        payamount: "18.89",
+        name: "",
+        cvv: "",
+        cardno:  "",
+        expmonth:  "",
+        expyear:  ""         
+    }
     
     public errorMessage: string = "";
                   
@@ -20,12 +26,14 @@ export class PaymentComponent {
     }
            
     paynow(): void {
+        
+        console.log( JSON.stringify(this.card));
                 
-        this.paymentService.process()
-            .subscribe(data => {                                 
-            },
-            error => this.errorMessage = <any>error);
-        )         
+        // this.paymentService.process()
+        //     .subscribe(data => {                                 
+        //     },
+        //     error => this.errorMessage = <any>error);
+        // )         
     }
         
 }

@@ -29,15 +29,23 @@ System.register(['angular2/core', 'angular2/router', '../services/payment.servic
                     this.paymentService = paymentService;
                     this._router = _router;
                     this.pageTitle = "Setup your payment";
-                    this.userEmail = "";
-                    this.password = "";
+                    this.card = {
+                        payamount: "18.89",
+                        name: "",
+                        cvv: "",
+                        cardno: "",
+                        expmonth: "",
+                        expyear: ""
+                    };
                     this.errorMessage = "";
                 }
                 PaymentComponent.prototype.paynow = function () {
-                    var _this = this;
-                    this.paymentService.process()
-                        .subscribe(function (data) {
-                    }, function (error) { return _this.errorMessage = error; });
+                    console.log(JSON.stringify(this.card));
+                    // this.paymentService.process()
+                    //     .subscribe(data => {                                 
+                    //     },
+                    //     error => this.errorMessage = <any>error);
+                    // )         
                 };
                 PaymentComponent = __decorate([
                     core_1.Component({
