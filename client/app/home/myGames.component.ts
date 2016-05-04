@@ -22,6 +22,7 @@ export class MyGamesComponent implements OnInit {
 
     platformFilter: string = '';
     orderbyFilter: string = '';
+    currentTab: string = 'collection';
 
     constructor(private _gameService: GameService, private _authService: AuthService) {
     }
@@ -40,7 +41,8 @@ export class MyGamesComponent implements OnInit {
     }
 
     getMyGames(type: string): void {
-        this._gameService.getMyGames('collection')
+        this.currentTab = type;
+        this._gameService.getMyGames(type)
             .subscribe(
             games => this.games = games,
             error => this.errorMessage = <any>error

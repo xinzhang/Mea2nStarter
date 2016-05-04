@@ -1,0 +1,126 @@
+<h3>{{pageTitle}}</h3>
+
+<div class="main">
+    <div class="card-types">
+        <div class="master"></div>
+        <div class="visa"></div>
+    </div>
+    <header>
+        <h1>Make a payment to<br>games online</h1>
+    </header>
+
+    <form accept-charset="UTF-8" action="" class="pay" method="post" novalidate="novalidate">
+        <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="S9RzzKLjXaMuGv5yI7ucmd8pMtTPvaPCL6t4HcedaS0="></div>
+        <div class="step active">
+            <section>
+                <fieldset>
+                    <label for="charge_amount">
+Amount to Pay
+<span class="input-right-hint">AUD</span>
+</label>
+                    <input data-validate="amount" id="charge_amount" name="charge[amount]" required="required" type="text">
+
+                </fieldset>
+            </section>
+
+            <section>
+                <fieldset>
+                    <label for="charge_description">
+Description
+</label>
+                    <input id="charge_description" name="charge[description]" type="text">
+                </fieldset>
+            </section>
+
+            <section>
+                <div class="card-name">
+                    <label for="charge_card_name">Name on Card</label>
+                    <input autocomplete="cc-name" data-validate="cc-name" id="charge_card_name" name="charge[card][name]" required="required"
+                        size="30" type="text">
+
+                </div>
+                <fieldset class="thirds card">
+                    <div class="field-1 number">
+                        <label for="charge_card_number">Card Number</label>
+                        <input autocapitalize="off" autocomplete="cc-number" data-validate="cc-number" id="charge_card_number" name="charge[card][number]"
+                            pattern="\d*" placeholder="•••• •••• •••• ••••" required="required" size="30" type="text">
+                    </div>
+                    <div class="field-2 expiry">
+                        <label for="charge_card_expiry">Expiry</label>
+                        <input autocomplete="cc-exp" class="field-1" data-validate="cc-exp" id="charge_card_expiry" name="charge[card][expiry]" pattern="\d*"
+                            placeholder="MM/YY" required="required" size="30" type="text">
+                    </div>
+                    <div class="field-3 cvc">
+                        <label for="charge_card_cvc">CVC</label>
+                        <input autocomplete="off" data-validate="cc-cvc" id="charge_card_cvc" name="charge[card][cvc]" pattern="\d*" required="required"
+                            size="30" type="text">
+                    </div>
+                    <div class="error-group">
+                    </div>
+                </fieldset>
+            </section>
+
+            <fieldset>
+                <div class="field-2">
+                    <label for="charge_email">Email</label>
+                    <input autocomplete="email" data-validate="email" id="charge_email" name="charge[email]" required="required" size="30" type="email">
+
+                </div>
+            </fieldset>
+
+            <section class="submit">
+                <button class="next" type="submit">Next →</button>
+            </section>
+        </div>
+
+        <div class="step">
+            <section>
+                <fieldset>
+                    <label for="charge_card_address_line1">Address Line 1</label>
+                    <input autocomplete="address-line1" class="field-1" id="charge_card_address_line1" name="charge[card][address_line1]" required="required"
+                        size="30" type="text">
+
+                    <label for="charge_card_address_line2">Address Line 2 (optional)</label>
+                    <input autocomplete="address-line2" class="field-2" id="charge_card_address_line2" name="charge[card][address_line2]" size="30"
+                        type="text">
+
+                </fieldset>
+                <fieldset class="thirds city-state-postcode">
+                    <div class="field-1">
+                        <label for="charge_card_address_city">City</label>
+                        <input autocomplete="city" id="charge_card_address_city" name="charge[card][address_city]" required="required" size="30"
+                            type="text">
+                    </div>
+                    <div class="field-2">
+                        <label for="charge_card_address_state">State</label>
+                        <input autocomplete="state" id="charge_card_address_state" name="charge[card][address_state]" required="required" size="30"
+                            type="text">
+                    </div>
+                    <div class="field-3">
+                        <label for="charge_card_address_postcode">Postcode</label>
+                        <input autocomplete="postal-code" id="charge_card_address_postcode" name="charge[card][address_postcode]" required="required"
+                            size="30" type="text">
+                    </div>
+                    <div class="error-group">
+
+
+
+                    </div>
+                    <label for="charge_card_address_country">Country</label>
+                    <select id="charge_card_address_country" name="charge[card][address_country]">
+                        <option value="AU">Australia</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="US">United States</option>
+                    </select>
+
+                </fieldset>
+            </section>
+
+            <section class="submit">
+                <button class="btn btn-lg" (click)="paynow()">Pay Now</button>
+            </section>
+        </div>
+    </form>
+
+
+</div>

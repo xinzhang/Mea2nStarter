@@ -6,13 +6,13 @@ import { IGame } from './game';
 })
 export class GamePlatformFilterPipe implements PipeTransform {
 
-    transform(value: IGame[], args: string[]): IGame[] {
-        
-        let filter: string = args[0] ? args[0].toLocaleLowerCase() : null;
+    transform(value: IGame[], args: string): IGame[] {
+                
+        let filter: string = args ? args.toLocaleLowerCase() : null;
         
         if (filter == null )
             return value;
-        
+                
         return filter ? value.filter((g: IGame) =>
             g.platform.toLocaleLowerCase().indexOf(filter) != -1) : value;            
     }

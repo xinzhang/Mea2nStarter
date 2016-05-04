@@ -11,34 +11,31 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var GamePlatformFilterPipe;
+    var PaymentService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            GamePlatformFilterPipe = (function () {
-                function GamePlatformFilterPipe() {
+            PaymentService = (function () {
+                function PaymentService() {
+                    this._payment_url = '/auth/register';
+                    this.secret = "vD3FnO5n7elLWkK-z4zJpg";
+                    this.pubkey = "pk_R0jSerMKd4ZmzkmioV3Z3g";
                 }
-                GamePlatformFilterPipe.prototype.transform = function (value, args) {
-                    var filter = args ? args.toLocaleLowerCase() : null;
-                    if (filter == null)
-                        return value;
-                    return filter ? value.filter(function (g) {
-                        return g.platform.toLocaleLowerCase().indexOf(filter) != -1;
-                    }) : value;
+                PaymentService.prototype.process = function (data) {
+                    console.log("process");
+                    return null;
                 };
-                GamePlatformFilterPipe = __decorate([
-                    core_1.Pipe({
-                        name: 'gamePlatformFilter'
-                    }), 
+                PaymentService = __decorate([
+                    core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
-                ], GamePlatformFilterPipe);
-                return GamePlatformFilterPipe;
+                ], PaymentService);
+                return PaymentService;
             }());
-            exports_1("GamePlatformFilterPipe", GamePlatformFilterPipe);
+            exports_1("PaymentService", PaymentService);
         }
     }
 });
-//# sourceMappingURL=game-platform.filter.js.map
+//# sourceMappingURL=payment.service.js.map

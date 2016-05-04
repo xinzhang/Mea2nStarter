@@ -5,7 +5,7 @@
         <ul class="list-inline">
             <li><strong>Platform</strong></li>
             <li><a [class.active]="platformFilter == ''" (click)="updatePlatformFilter('')">All</a></li>
-            <li *ngFor="#p of platformList">
+            <li *ngFor="let p of platformList">
                 | <a [class.active]="platformFilter == p" (click)="updatePlatformFilter(p)">{{p}}</a>
             </li>
         </ul>
@@ -28,7 +28,7 @@
 
 <div class="row bottom10">
 
-    <div class="col-sm-6 col-md-4" *ngFor='#g of games | gamePlatformFilter : platformFilter | gameOrderFilter: orderbyFilter'>
+    <div class="col-sm-6 col-md-4" *ngFor='let g of games | gamePlatformFilter : platformFilter | gameOrderFilter: orderbyFilter'>
 
         <div class="thumbnail">
             <img src="{{g.smallImageUrl}}" alt="{{g.gameTitle}" />

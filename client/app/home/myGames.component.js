@@ -43,6 +43,7 @@ System.register(['angular2/core', '../services/game.service', '../services/auth.
                     this.platformList = ['ps4', 'xbox one', 'ps3'];
                     this.platformFilter = '';
                     this.orderbyFilter = '';
+                    this.currentTab = 'collection';
                 }
                 MyGamesComponent.prototype.ngOnInit = function () {
                     this.getMyGames('collection');
@@ -55,7 +56,8 @@ System.register(['angular2/core', '../services/game.service', '../services/auth.
                 };
                 MyGamesComponent.prototype.getMyGames = function (type) {
                     var _this = this;
-                    this._gameService.getMyGames('collection')
+                    this.currentTab = type;
+                    this._gameService.getMyGames(type)
                         .subscribe(function (games) { return _this.games = games; }, function (error) { return _this.errorMessage = error; });
                 };
                 MyGamesComponent = __decorate([
