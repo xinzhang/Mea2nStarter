@@ -6,7 +6,8 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             UsernameValidator = (function () {
-                function UsernameValidator() {
+                function UsernameValidator(authService) {
+                    this.authService = authService;
                 }
                 UsernameValidator.startsWithNumber = function (control) {
                     var code = control.value.charAt(0);

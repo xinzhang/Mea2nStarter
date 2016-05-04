@@ -48,4 +48,29 @@ authRouter.route('/login')
         res.json(req.user);
     });
 
+authRouter.route('/checkuser/:username')
+    .get(function (req, res) {
+            var url = 'mongodb://localhost:27017/MEA2N';
+
+            mongodb.connect(url, function (err, db) {
+                var collection = db.collection('users');
+                collection.findOne({
+                        email: req.params.username
+                    },
+                    
+                    function (err, results) {
+                        if (err) res.json(err.errorMessage);
+                        console.log(' server checkuser results returned:' + (results!=null));
+                                                                        
+                        if (results != null ) {                            
+                            res.json('1');
+                        } else {
+                            res.json('0');
+                        }
+                    }
+                    
+                ); //end findOne                                       
+        });//end get
+    });
+
 module.exports = authRouter;

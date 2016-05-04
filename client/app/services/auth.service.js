@@ -29,6 +29,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this._http = _http;
                     this._register_url = '/auth/register';
                     this._login_url = '/auth/login';
+                    this._checkuser_url = '/auth/checkuser';
                     this.AuthorisedUser = null;
                     this.CurrentUser = null;
                     this.isUserLogin = false;
@@ -53,10 +54,26 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                         myCollection: data.collection,
                         myWishlist: data.wishlist
                     };
-                    if (this.CurrentUser.myCollection == null)
+                    if (this.CurrentUser.myCollection == null) {
                         this.CurrentUser.myCollection = [];
-                    if (this.CurrentUser.myWishlist == null)
+                    }
+                    if (this.CurrentUser.myWishlist == null) {
                         this.CurrentUser.myWishlist = [];
+                    }
+                };
+                AuthService.prototype.checkUser = function (user) {
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.get(this._checkuser_url + '/' + user, {}, options)
+                        .toPromise()
+                        .catch(this.handleError);
+                };
+                AuthService.prototype.extractData = function (res) {
+                    if (res.status < 200 || res.status >= 300) {
+                        throw new Error('Bad response status: ' + res.status);
+                    }
+                    var body = res.json();
+                    return body.data || {};
                 };
                 AuthService.prototype.handleError = function (error) {
                     console.error(error);

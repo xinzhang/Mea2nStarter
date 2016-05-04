@@ -3,6 +3,5 @@ export interface IUser {
     email:string;
     
     myCollection: number[];
-    myWishlist: number[]];
-        
+    myWishlist: number[];        
 }

@@ -37,7 +37,8 @@ export class RegisterComponent {
         this.username = new Control(
             "",
             Validators.compose([Validators.required, UsernameValidator.startsWithNumber]),
-            UsernameValidator.usernameTaken
+            //UsernameValidator.usernameTaken
+            this.userNameValidator.bind(this)
         );
         
         this.pw = new Control(
@@ -62,7 +63,7 @@ export class RegisterComponent {
             'password': this.password
         }).subscribe(
             data => {
-                localStorage.setItem('jwt', data.email);
+                //localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);                
                 this._authService.AuthorisedUser = data.email;
                 this._authService.setAuthorisedUserData(data);
@@ -72,5 +73,22 @@ export class RegisterComponent {
         
         this._router.navigate(['Welcome']);
     }
+    
+    userNameValidator(control: Control) {
+        //return this._authService.checkUser(control.value) ? {userAlreadyExistsError: true} : null;
+        return new Promise((resolve, reject) {          
+                this._authService.checkUser(control.value)
+                    .then(
+                        data => {                            
+                            var ret = data.json();
+                            
+                            if (ret == '1')
+                                resolve( { "usernameTaken": true } );
+                            else
+                                resolve ( {"usernameTaken": null});
+                        }
+                    )                    
+                });
+        }
 
 }

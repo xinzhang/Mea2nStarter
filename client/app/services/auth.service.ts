@@ -9,6 +9,7 @@ import {IUser} from './user'
 export class AuthService {
     private _register_url = '/auth/register';
     private _login_url = '/auth/login';
+    private _checkuser_url = '/auth/checkuser';
     
     AuthorisedUser:string = null;
     
@@ -27,13 +28,12 @@ export class AuthService {
             .catch(this.handleError);
     }
 
-    login(data: any): Observable<any> {
-                
+    login(data: any): Observable<any> {                
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         
         return this._http.post(this._login_url, JSON.stringify(data), options) 
-             .map ( resp => resp.json())
+            .map ( resp => resp.json())
             .catch(this.handleError);        
     }
     
@@ -44,13 +44,32 @@ export class AuthService {
             myWishlist : data.wishlist
         }
         
-        if (this.CurrentUser.myCollection == null)
+        if (this.CurrentUser.myCollection == null) {
             this.CurrentUser.myCollection = [];
+        }
             
-        if (this.CurrentUser.myWishlist == null)
+        if (this.CurrentUser.myWishlist == null) {
             this.CurrentUser.myWishlist = [];
+        }
     }
     
+    checkUser(user: string): Promise<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+        return this._http.get(this._checkuser_url + '/' + user, {}, options)
+            .toPromise()            
+            .catch(this.handleError);        
+    }
+    
+    extractData(res: Response) {
+        if (res.status < 200 || res.status >= 300) {
+                throw new Error('Bad response status: ' + res.status);
+        }
+        let body = res.json();
+        return body.data || { };
+    }
+
     handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
