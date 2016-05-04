@@ -28,28 +28,35 @@ export class RegisterComponent {
 
     public username: Control;
     public pw: Control;
+    public confirmpw: Control;
     public regForm: ControlGroup;
 
     constructor(private _authService: AuthService,
+        private _usernameValidator: UsernameValidator,
         private _router: Router,
-        private builder: FormBuilder) 
-    {
+        private builder: FormBuilder) {
         this.username = new Control(
             "",
-            Validators.compose([Validators.required, UsernameValidator.startsWithNumber]),
-            //UsernameValidator.usernameTaken
-            this.userNameValidator.bind(this)
+            Validators.compose([Validators.required, _usernameValidator.startsWithNumber]),
+            _usernameValidator.usernameTaken
+            //this.userNameValidator.bind(this)
         );
-        
+
         this.pw = new Control(
             "",
             Validators.compose([Validators.required, Validators.minLength(3)])
-        )
+        );
         
+        this.confirmpw = new Control(
+            "",
+            Validators.compose([Validators.required, Validators.minLength(3)])
+        );
+
         this.regForm = builder.group({
             username: this.username,
-            pw: this.pw
-        })
+            pw: this.pw,
+            confirmpw: this.confirmpw,
+        }, {validator: this.matchingPasswords('pw', 'confirmpw')});
 
     }
 
@@ -57,13 +64,12 @@ export class RegisterComponent {
 
     register(): void {
         console.log('register ' + this.userEmail);
-        
+
         this._authService.register({
             'email': this.userEmail,
             'password': this.password
         }).subscribe(
             data => {
-                //localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);                
                 this._authService.AuthorisedUser = data.email;
                 this._authService.setAuthorisedUserData(data);
@@ -73,22 +79,21 @@ export class RegisterComponent {
         
         this._router.navigate(['Welcome']);
     }
-    
-    userNameValidator(control: Control) {
-        //return this._authService.checkUser(control.value) ? {userAlreadyExistsError: true} : null;
-        return new Promise((resolve, reject) {          
-                this._authService.checkUser(control.value)
-                    .then(
-                        data => {                            
-                            var ret = data.json();
-                            
-                            if (ret == '1')
-                                resolve( { "usernameTaken": true } );
-                            else
-                                resolve ( {"usernameTaken": null});
-                        }
-                    )                    
-                });
+   
+    matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+        return (group: ControlGroup): { [key: string]: any } => {
+            let password = group.controls[passwordKey];
+            let confirmPassword = group.controls[confirmPasswordKey];
+
+            if (password.value !== confirmPassword.value) {
+                return {
+                    mismatchedPasswords: true
+                };
+            }
+            else {
+                return null;
+            }            
         }
+    }
 
 }

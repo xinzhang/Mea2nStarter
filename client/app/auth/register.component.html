@@ -7,8 +7,8 @@
                     <fieldset>
                         <div class="form-group has-error">
                             <input class="form-control input-lg" placeholder="E-mail Address" name="email" type="email" [(ngModel)]="userEmail" required
-                                [ngFormControl]="username">                            
-                            <p *ngIf="username.pending">Fetching data from the server...</p>
+                                [ngFormControl]="username">                          
+                            <!--<i *ngIf="username.pending" class="glyphicon glyphicon-refresh"></i>-->
                             <div *ngIf="username.dirty && !username.valid && !username.pending" class="alert alert-danger">
                                 <p *ngIf="username.errors.required">Username is required.</p>
                                 <p *ngIf="username.errors.email">Username is not valid email address.</p>
@@ -17,7 +17,8 @@
                             </div>
                         </div>
                         <div class="form-group has-error">
-                            <input class="form-control input-lg" placeholder="Password" name="password" value="" type="password" [(ngModel)]="password" required
+                            <input class="form-control input-lg" placeholder="Password" name="password" 
+                                value="" type="password" [(ngModel)]="password" required
                                 [ngFormControl]="pw">
                             <!--<div [hidden]="pw.valid || pw.pristine" class="alert alert-danger">
                                 Password is required
@@ -28,16 +29,13 @@
                             </div>
                         </div>
                         <div class="form-group has-error">
-                            <input class="form-control input-lg" placeholder="Confirm Password" name="password" value="" type="password" [(ngModel)]="confirmPassword" required>
+                            <input class="form-control input-lg" placeholder="Confirm Password" 
+                                name="password" value="" type="password" [(ngModel)]="confirmPassword" required
+                                [ngFormControl]="confirmpw">
+                            <div *ngIf="regForm.hasError('mismatchedPasswords')" class="alert alert-danger">
+                                    Passwords do not match.
+                            </div>                                                
                         </div>
-                        <!--<div class="form-group">
-                                <select class="form-control input-lg">
-                                    <option selecterd="">Sequrity Question</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control input-lg" placeholder="Sequrity Answer" name="answer" value="" type="text">
-                            </div>-->
                         <div class="checkbox">
                             <label>
                                     <input name="terms" type="checkbox">I have read and agree to the <a href="#">terms of service</a>

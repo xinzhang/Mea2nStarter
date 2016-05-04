@@ -15,12 +15,13 @@ import {HighlightDirective} from './attributes/highlight.directive';
 
 import {AuthService} from './services/auth.service';
 import {GameService} from './services/game.service';
+import {UsernameValidator} from './validators/usernameValidator'
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     directives: [ROUTER_DIRECTIVES, LoginComponent, HighlightDirective],
-    providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, GameService]
+    providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, GameService, UsernameValidator]
 })
 @RouteConfig([
     { path: '/welcome', name: 'Welcome', component: WelcomeComponent, useAsDefault: true },
