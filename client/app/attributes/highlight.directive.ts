@@ -16,6 +16,8 @@ export class HighlightDirective {
     
     @Input() set defaultColor(colorName: string) {
         this._defaultColor = colorName || this._defaultColor;
+        
+        
     }
     
     constructor(el: ElementRef) {
