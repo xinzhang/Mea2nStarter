@@ -70,9 +70,7 @@ export class RegisterComponent {
             'password': this.password
         }).subscribe(
             data => {
-                //this._router.navigate(['Welcome']);                
-                this._authService.AuthorisedUser = data.email;
-                this._authService.setAuthorisedUserData(data);
+                this._authService.setAuthorisedUserData(data);                
             },
             error => this.errorMessage = <any>error);   
         )

@@ -23,10 +23,13 @@
                 <li>
                     <a [routerLink]="['Payment']" style="display:block">Payment</a>
                 </li>
+                <li>
+                    <a [routerLink]="['MyGames']" style="display:block">My Collections</a>
+                </li>
             </ul>
                     
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="authService.AuthorisedUser != null " class="dropdown" id="menuWelcome">
+                <li *ngIf="authService.CurrentUser != null " class="dropdown" id="menuWelcome">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navWelcome">
                         Welcome, {{authService.CurrentUser.email}}
                     </a>
@@ -37,15 +40,15 @@
                         <a style="display:block">Tracking</a>                        
                     </div>
                 </li>
-                <li *ngIf= "authService.AuthorisedUser!=null">
+                <li *ngIf= "authService.CurrentUser!=null">
                     <a (click)="signout()"><i class="glyphicon glyphicon-log-out"></i></a>
                 </li>
-                <li id="menuRegister" *ngIf="authService.AuthorisedUser==null">
+                <li id="menuRegister" *ngIf="authService.CurrentUser==null">
                     <a [routerLink]="['Register']" title="Fast and free sign up!" id="navRegister">
                         <span class="glyphicon glyphicon-registration-mark"></span> Register
                     </a>
                 </li>                
-                <li class="dropdown" id="menuLogin" *ngIf="authService.AuthorisedUser==null">
+                <li class="dropdown" id="menuLogin" *ngIf="authService.CurrentUser==null">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
                         <span class="glyphicon glyphicon-log-in"></span> Login
                     </a>

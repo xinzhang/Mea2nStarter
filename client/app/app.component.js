@@ -67,11 +67,15 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                     this.pageTitle = "this is the first app component.";
                 }
                 AppComponent.prototype.ngOnInit = function () {
-                    //this.authService.AuthorisedUser = localStorage.getItem('jwt');                
+                    this.authService.CurrentUser = JSON.parse(sessionStorage.getItem('session-user'));
                 };
                 AppComponent.prototype.signout = function () {
-                    //localStorage.removeItem('jwt');
-                    this.authService.AuthorisedUser = null;
+                    var _this = this;
+                    this.authService.logout()
+                        .subscribe(function (data) {
+                        sessionStorage.removeItem('session-user');
+                        _this.authService.CurrentUser = null;
+                    });
                 };
                 AppComponent.prototype.onLoginSuccess = function (message) {
                     //this.user = user;

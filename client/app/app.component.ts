@@ -44,12 +44,15 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        //this.authService.AuthorisedUser = localStorage.getItem('jwt');                
+        this.authService.CurrentUser = JSON.parse(sessionStorage.getItem('session-user'));                        
     }
 
-    signout(): void {
-        //localStorage.removeItem('jwt');
-        this.authService.AuthorisedUser = null;
+    signout(): void {                
+        this.authService.logout()
+            .subscribe( data => {
+                sessionStorage.removeItem('session-user');
+                this.authService.CurrentUser = null;        
+            })
     }
 
     onLoginSuccess(message: string): void {

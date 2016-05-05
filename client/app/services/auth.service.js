@@ -29,8 +29,8 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this._http = _http;
                     this._register_url = '/auth/register';
                     this._login_url = '/auth/login';
+                    this._logout_url = '/auth/logout';
                     this._checkuser_url = '/auth/checkuser';
-                    this.AuthorisedUser = null;
                     this.CurrentUser = null;
                     this.isUserLogin = false;
                 }
@@ -48,6 +48,13 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                         .map(function (resp) { return resp.json(); })
                         .catch(this.handleError);
                 };
+                AuthService.prototype.logout = function () {
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.get(this._logout_url, options)
+                        .map(function (resp) { return resp.json(); })
+                        .catch(this.handleError);
+                };
                 AuthService.prototype.setAuthorisedUserData = function (data) {
                     this.CurrentUser = {
                         email: data.email,
@@ -60,6 +67,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     if (this.CurrentUser.myWishlist == null) {
                         this.CurrentUser.myWishlist = [];
                     }
+                    sessionStorage.setItem('session-user', JSON.stringify(data));
                 };
                 AuthService.prototype.checkUser = function (user) {
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });

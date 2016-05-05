@@ -57,8 +57,6 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                         'email': this.userEmail,
                         'password': this.password
                     }).subscribe(function (data) {
-                        //this._router.navigate(['Welcome']);                
-                        _this._authService.AuthorisedUser = data.email;
                         _this._authService.setAuthorisedUserData(data);
                     }, function (error) { return _this.errorMessage = error; });
                     this._router.navigate(['Welcome']);

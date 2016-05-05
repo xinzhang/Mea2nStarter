@@ -48,6 +48,12 @@ authRouter.route('/login')
         res.json(req.user);
     });
 
+authRouter.route('/logout')
+    .get(function(req, res){
+        req.logout();
+        res.status(200).send('1');
+    });
+
 authRouter.route('/checkuser/:username')
     .get(function (req, res) {
             var url = 'mongodb://localhost:27017/MEA2N';

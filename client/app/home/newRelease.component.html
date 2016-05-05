@@ -39,7 +39,7 @@
             
             <p>{{g.platform}} - {{g.releaseDate}} - {{g.quantity}} / {{g.wishcount}}</p>
 
-            <p *ngIf= "_authService.AuthorisedUser!=null">
+            <p *ngIf= "_authService.CurrentUser!=null">
                 <a *ngIf="!isInMy('collection', g.gameId) && !isInMy('wishlist', g.gameId)" (click)="addToCollection(g)" class="btn btn-primary" role="button">
                     <i class="glyphicon glyphicon-plus"></i>My collection                    
                 </a>
