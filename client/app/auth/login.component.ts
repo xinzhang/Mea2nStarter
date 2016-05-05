@@ -36,7 +36,7 @@ export class LoginComponent {
                 //this.LOGIN_SUCCESS.emit("login success message");                                
             },
             error => this.errorMessage = <any>error);
-        )         
+        );         
     }
         
 }

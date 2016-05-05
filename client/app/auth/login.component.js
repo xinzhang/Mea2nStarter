@@ -45,6 +45,7 @@ System.register(['angular2/core', 'angular2/router', '../services/auth.service']
                         _this._authService.setAuthorisedUserData(data);
                         //this.LOGIN_SUCCESS.emit("login success message");                                
                     }, function (error) { return _this.errorMessage = error; });
+                    ;
                 };
                 __decorate([
                     core_1.Output(), 

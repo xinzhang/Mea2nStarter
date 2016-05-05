@@ -10,7 +10,7 @@
             </div>
             <div class="stepwizard-step">
                 <a type="button" class="btn btn-circle " 
-                    [class.btn-primary]="isPrimary(2)"
+                    [class.btn-primary]="currentPage == 2"
                     [class.btn-default]="currentPage != 2" 
                     (click)="currentPage = 2">2</a>
                 <p>Step 2</p>
