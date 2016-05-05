@@ -56,6 +56,14 @@ export class SetupPaymentComponent {
     
     paynow(): void {
         console.log(JSON.stringify(this.card));
+        
+        this.paymentService.process(card)
+            .subscribe(data => {
+                
+            },
+            error => {
+                
+            });        
     }
     
 }

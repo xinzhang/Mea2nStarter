@@ -59,6 +59,10 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                 };
                 SetupPaymentComponent.prototype.paynow = function () {
                     console.log(JSON.stringify(this.card));
+                    this.paymentService.process(card)
+                        .subscribe(function (data) {
+                    }, function (error) {
+                    });
                 };
                 SetupPaymentComponent = __decorate([
                     core_1.Component({
