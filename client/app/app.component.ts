@@ -11,6 +11,7 @@ import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
 import {ForgotPasswordComponent} from './auth/forgotPassword.component';
 import {PaymentComponent} from './auth/payment.component';
+import {SetupPaymentComponent} from './auth/setupPayment.component';
 
 import {HighlightDirective} from './attributes/highlight.directive';
 
@@ -34,7 +35,7 @@ import {UsernameValidator} from './validators/usernameValidator'
     { path: '/myGames', name: 'MyGames', component: MyGamesComponent },
     { path: '/register', name: 'Register', component: RegisterComponent },
     { path: '/forgotPassword', name: 'ForgotPassword', component: ForgotPasswordComponent },
-    { path: '/payment', name: 'Payment', component: PaymentComponent }
+    { path: '/payment', name: 'Payment', component: SetupPaymentComponent }
 ])
 export class AppComponent implements OnInit {
     pageTitle: string = "this is the first app component.";
@@ -43,7 +44,8 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        //this.authService.AuthorisedUser = localStorage.getItem('jwt');        
+        this.authService.AuthorisedUser = localStorage.getItem('jwt');
+                
     }
 
     signout(): void {

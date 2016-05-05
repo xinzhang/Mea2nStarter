@@ -1,5 +1,5 @@
 var express = require('express');
-var authRouter = express.Router();
+var paymentRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
 var util = require('util');
@@ -40,7 +40,7 @@ paymentRouter.route('/card')
 
             var collection = db.collection('payments');
             
-        }
+        });
     });
 
 module.exports = paymentRouter;

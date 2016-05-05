@@ -1,0 +1,79 @@
+<div class="container">    
+    <div class="stepwizard col-md-offset-3">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a type="button" class="btn btn-circle" 
+                    [class.btn-primary]="currentPage == 1" 
+                    [class.btn-default]="currentPage != 1"
+                    (click)="currentPage = 1">1</a>
+                <p>Step 1</p>
+            </div>
+            <div class="stepwizard-step">
+                <a type="button" class="btn btn-circle " 
+                    [class.btn-primary]="isPrimary(2)"
+                    [class.btn-default]="currentPage != 2" 
+                    (click)="currentPage = 2">2</a>
+                <p>Step 2</p>
+            </div>
+            <div class="stepwizard-step">
+                <a type="button" class="btn btn-circle" 
+                    [class.btn-primary]="currentPage == 3"
+                    [class.btn-default]="currentPage != 3" 
+                    (click)="currentPage = 3">3</a>
+                <p>Step 3</p>
+            </div>
+        </div>
+    </div>
+    <h3>{{currentPage}}</h3>
+    <form role="form" action="" method="post">
+        <div class="row setup-content" id="step-1" *ngIf="currentPage == 1">
+            <div class="col-xs-6 col-md-offset-3">
+                <div class="col-md-12">
+                    <h3> Step 1</h3>
+                    <div class="form-group">
+                        <label class="control-label">First Name</label>
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Last Name</label>
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Address</label>
+                        <textarea required="required" class="form-control" placeholder="Enter your address"></textarea>
+                    </div>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" (click)="next();">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content" id="step-2" *ngIf="currentPage == 2">
+            <div class="col-xs-6 col-md-offset-3">
+                <div class="col-md-12">
+                    <h3> Step 2</h3>
+                    <div class="form-group">
+                        <label class="control-label">Company Name</label>
+                        <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Company Address</label>
+                        <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                    </div>
+                    
+                        <button class="btn btn-primary nextBtn btn-lg" type="button" (click)="prev()">Prev</button>
+                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" (click)="next()">Next</button>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content" id="step-3" *ngIf="currentPage == 3">
+            <div class="col-xs-6 col-md-offset-3">
+                <div class="col-md-12">
+                    <h3> Step 3</h3>                    
+                        <button class="btn btn-primary nextBtn btn-lg" type="button" (click)="prev()">Prev</button>
+                        <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>                    
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

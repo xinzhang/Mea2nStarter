@@ -27,13 +27,13 @@ export class LoginComponent {
            'password': this.password 
         }).subscribe(
             data => {                 
-                //localStorage.setItem('jwt', data.email);
+                localStorage.setItem('jwt', data.email);
                 //this._router.navigate(['Welcome']);
                 
                 this._authService.AuthorisedUser = data.email;
                 this._authService.setAuthorisedUserData(data);
                                                                 
-                this.LOGIN_SUCCESS.emit("login success message");                                
+                //this.LOGIN_SUCCESS.emit("login success message");                                
             },
             error => this.errorMessage = <any>error);
         )         

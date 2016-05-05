@@ -11,7 +11,7 @@ var port = process.env.PORT || 4000;
 
 var authRoutes = require('./routes/authRoutes');
 var gameRoutes = require('./routes/gameRoutes');
-var paymentRoutes = require('./routes/paymentRouter');
+var paymentRoutes = require('./routes/paymentRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ app.use('/node_modules', express.static(__dirname + '/../node_modules'));
 
 app.use('/auth', authRoutes);
 app.use('/game', gameRoutes)
-app.use('/payment', pamentRoutes)
+app.use('/payment', paymentRoutes)
 
 
 // app.post('/Register', function(req, res){	
