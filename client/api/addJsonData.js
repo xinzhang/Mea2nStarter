@@ -19,6 +19,7 @@ fs.readFile('./products/games.json', 'utf-8', function (err, data) {
                 if (doc == null || doc._id == null) {
 
                     var doc = jsonGameObj;
+                    
                     collection.insertOne(doc, function (err, result) {
                         if (err) throw err;
                         console.log(JSON.stringify(result));
