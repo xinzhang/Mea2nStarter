@@ -38,7 +38,8 @@
     "gulp-nodemon": "^2.0.6",
     "lite-server": "^2.2.0",
     "typescript": "^1.8.10",
-    "typings": "^0.7.12"
+    "typings": "^0.7.12",
+    "xml2js": "^0.4.16"
   },
   "repository": {}
 }
