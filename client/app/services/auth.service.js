@@ -70,9 +70,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     sessionStorage.setItem('session-user', JSON.stringify(data));
                 };
                 AuthService.prototype.checkUser = function (user) {
-                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-                    var options = new http_1.RequestOptions({ headers: headers });
-                    return this._http.get(this._checkuser_url + '/' + user, {}, options)
+                    return this._http.get(this._checkuser_url + '/' + user)
                         .toPromise()
                         .catch(this.handleError);
                 };

@@ -11,7 +11,7 @@ interface ValidationResult {
 @Injectable()
 export class UsernameValidator {
 
-    constructor() { }
+    constructor(private authService: AuthService) { }
     
     startsWithNumber(control: Control): ValidationResult {
         var code = control.value.charAt(0);
@@ -43,8 +43,8 @@ export class UsernameValidator {
     }
     
      userNameValidator(control: Control) : Promise<ValidationResult> {
-        //return this._authService.checkUser(control.value) ? {userAlreadyExistsError: true} : null;
-        return new Promise((resolve, reject) {          
+        
+        return new Promise( (resolve, reject) => {          
             this.authService.checkUser(control.value)
                 .then(data => {
                     var ret = data.json();

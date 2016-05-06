@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', '../services/auth.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,16 +10,20 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, auth_service_1;
     var UsernameValidator;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (auth_service_1_1) {
+                auth_service_1 = auth_service_1_1;
             }],
         execute: function() {
             UsernameValidator = (function () {
-                function UsernameValidator() {
+                function UsernameValidator(authService) {
+                    this.authService = authService;
                 }
                 UsernameValidator.prototype.startsWithNumber = function (control) {
                     var code = control.value.charAt(0);
@@ -46,7 +50,6 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 UsernameValidator.prototype.userNameValidator = function (control) {
                     var _this = this;
-                    //return this._authService.checkUser(control.value) ? {userAlreadyExistsError: true} : null;
                     return new Promise(function (resolve, reject) {
                         _this.authService.checkUser(control.value)
                             .then(function (data) {
@@ -64,7 +67,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 UsernameValidator = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService])
                 ], UsernameValidator);
                 return UsernameValidator;
             }());

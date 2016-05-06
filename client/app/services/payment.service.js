@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,27 +10,42 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, http_1, Observable_1;
     var PaymentService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (Observable_1_1) {
+                Observable_1 = Observable_1_1;
             }],
         execute: function() {
             PaymentService = (function () {
-                function PaymentService() {
-                    this._payment_url = '/auth/register';
+                function PaymentService(_http) {
+                    this._http = _http;
+                    this._payment_url = '/payment/card';
                     this.secret = "vD3FnO5n7elLWkK-z4zJpg";
                     this.pubkey = "pk_R0jSerMKd4ZmzkmioV3Z3g";
                 }
                 PaymentService.prototype.process = function (data) {
                     console.log("process");
-                    return null;
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.post(this._payment_url, JSON.stringify(data), options)
+                        .map(function (resp) { return resp.json(); })
+                        .catch(this.handleError);
+                };
+                PaymentService.prototype.handleError = function (error) {
+                    console.error(error);
+                    return Observable_1.Observable.throw(error.json().error || 'Server error');
                 };
                 PaymentService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], PaymentService);
                 return PaymentService;
             }());

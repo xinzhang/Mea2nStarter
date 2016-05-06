@@ -64,10 +64,8 @@ export class AuthService {
     }
 
     checkUser(user: string): Promise<any> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.get(this._checkuser_url + '/' + user, {}, options)
+        
+        return this._http.get(this._checkuser_url + '/' + user)
             .toPromise()
             .catch(this.handleError);
     }

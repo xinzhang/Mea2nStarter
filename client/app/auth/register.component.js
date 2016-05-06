@@ -58,7 +58,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                         'password': this.password
                     }).subscribe(function (data) {
                         _this._authService.setAuthorisedUserData(data);
-                    }, function (error) { return _this.errorMessage = error; });
+                    }, function (error) { _this.errorMessage = error; });
                     this._router.navigate(['Welcome']);
                 };
                 RegisterComponent.prototype.matchingPasswords = function (passwordKey, confirmPasswordKey) {

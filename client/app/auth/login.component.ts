@@ -30,7 +30,7 @@ export class LoginComponent {
                 this._authService.setAuthorisedUserData(data);
                 //this.LOGIN_SUCCESS.emit("login success message");                                
             },
-            error => this.errorMessage = <any>error);
+            error => { this.errorMessage = <any>error }
         );         
     }
         

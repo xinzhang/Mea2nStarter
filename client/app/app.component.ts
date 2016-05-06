@@ -10,7 +10,6 @@ import {MyGamesComponent} from './home/myGames.component';
 import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
 import {ForgotPasswordComponent} from './auth/forgotPassword.component';
-import {PaymentComponent} from './auth/payment.component';
 import {SetupPaymentComponent} from './auth/setupPayment.component';
 
 import {HighlightDirective} from './attributes/highlight.directive';

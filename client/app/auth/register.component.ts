@@ -72,7 +72,7 @@ export class RegisterComponent {
             data => {
                 this._authService.setAuthorisedUserData(data);                
             },
-            error => this.errorMessage = <any>error);   
+            error => { this.errorMessage = <any>error } 
         )
         
         this._router.navigate(['Welcome']);
