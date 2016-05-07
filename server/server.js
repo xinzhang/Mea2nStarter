@@ -11,6 +11,7 @@ var port = process.env.PORT || 4000;
 
 var authRoutes = require('./routes/authRoutes');
 var gameRoutes = require('./routes/gameRoutes');
+var gameLibraryRoutes = require('./routes/gameLibraryRoutes');
 var paymentRoutes = require('./routes/paymentRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -25,41 +26,8 @@ app.use('/node_modules', express.static(__dirname + '/../node_modules'));
 
 app.use('/auth', authRoutes);
 app.use('/game', gameRoutes)
+app.use('/gamelib', gameLibraryRoutes)
 app.use('/payment', paymentRoutes)
-
-
-// app.post('/Register', function(req, res){	
-// 	console.log(req.body);
-// 	// var user1 = new UserModel(req.body);
-// 	// user1.save(function (err){
-// 	// 	if (err) {
-// 	// 		console.log(err.message);
-// 	// 		res.status(500).send(err.message);
-// 	// 	}
-
-// 	// 	console.log('user1 saved.');		
-// 	res.status(200).send("register");
- 	// });
-// });
-
-app.get('/search', function(req, res){
-	console.log(req.query);
-	
-	if (req.query.q)
-	{
-		//var query = req.query.q;
-	 	res.status(200).send(req.query.q);		
-	}
-	else
-	{
-		res.status(400).send();
-	}
-})
-
-app.get('/games', function(req, res){
-    console.log(req.body);
-    res.status(200).send("games coming soon 1");
-})
 
 app.listen(port, function(error) {
   if (error) {
