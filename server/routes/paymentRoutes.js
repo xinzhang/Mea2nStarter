@@ -32,7 +32,7 @@ paymentRouter.route('/card')
         var payment = {
             amount: paymentViewModel.amount,
             description: 'subscription charge monthly',
-            email: req.user.email,
+            email: 'test@abc.com',//req.user.email,
             ip_address: '203.192.1.172',
             card: {
                 number: paymentViewModel.number,
@@ -49,11 +49,14 @@ paymentRouter.route('/card')
             }
         }
 
-        pin.createCharge(payment, function (err, res) {
-            console.log(res.body);
+        pin.createCharge(payment, function (err, ret) {
+            console.log(ret.body);
+            if (err)
+                res.status(500).send(err.errorMessage);
+                
             var url = 'mongodb://localhost:27017/MEA2N';
             mongodb.connect(url, function (err, db) {
-
+                
                 var collection = db.collection('users');
 
                 collection.updateOne(

@@ -61,6 +61,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                     console.log(JSON.stringify(this.card));
                     this.paymentService.process(this.card)
                         .subscribe(function (data) {
+                        console.log(data);
                     }, function (error) {
                     });
                 };

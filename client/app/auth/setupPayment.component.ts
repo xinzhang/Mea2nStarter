@@ -59,7 +59,7 @@ export class SetupPaymentComponent {
         
         this.paymentService.process(this.card)
             .subscribe(data => {
-                
+                console.log(data);
             },
             error => {
                 
