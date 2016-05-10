@@ -20,6 +20,7 @@ import {PaymentService} from '../services/payment.service';
 export class SetupPaymentComponent {
     public currentPage: number = 1;
     public pageTitle : string = "Setup your payment";
+    public payment_result: string = "";
     public card = {
         amount: 1889,
         name: "",
@@ -59,7 +60,7 @@ export class SetupPaymentComponent {
         
         this.paymentService.process(this.card)
             .subscribe(data => {
-                console.log(data);
+                this.payment_result = data;
             },
             error => {
                 

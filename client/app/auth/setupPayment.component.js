@@ -33,6 +33,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                     this._router = _router;
                     this.currentPage = 1;
                     this.pageTitle = "Setup your payment";
+                    this.payment_result = "";
                     this.card = {
                         amount: 1889,
                         name: "",
@@ -58,10 +59,11 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../serv
                     this.currentPage--;
                 };
                 SetupPaymentComponent.prototype.paynow = function () {
+                    var _this = this;
                     console.log(JSON.stringify(this.card));
                     this.paymentService.process(this.card)
                         .subscribe(function (data) {
-                        console.log(data);
+                        _this.payment_result = data;
                     }, function (error) {
                     });
                 };

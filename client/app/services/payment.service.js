@@ -36,9 +36,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     return this._http.post(this._payment_url, JSON.stringify(data), options)
-                        .map(function (resp) {
-                        resp;
-                    })
+                        .map(function (resp) { resp.text(); })
                         .catch(this.handleError);
                 };
                 PaymentService.prototype.handleError = function (error) {
