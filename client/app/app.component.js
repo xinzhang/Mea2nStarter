@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './home/myGames.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './auth/setupPayment.component', './attributes/highlight.directive', './services/auth.service', './services/game.service', './services/payment.service', './validators/usernameValidator'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './home/myGames.component', './gameLibrary/searchResults.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './auth/setupPayment.component', './attributes/highlight.directive', './services/auth.service', './services/game.service', './services/gameLibrary.service', './services/payment.service', './validators/usernameValidator'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, myGames_component_1, register_component_1, login_component_1, forgotPassword_component_1, setupPayment_component_1, highlight_directive_1, auth_service_1, game_service_1, payment_service_1, usernameValidator_1;
+    var core_1, router_1, router_2, http_1, welcome_component_1, newRelease_component_1, myGames_component_1, searchResults_component_1, register_component_1, login_component_1, forgotPassword_component_1, setupPayment_component_1, highlight_directive_1, auth_service_1, game_service_1, gameLibrary_service_1, payment_service_1, usernameValidator_1;
     var AppComponent;
     return {
         setters:[
@@ -19,6 +19,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+                router_2 = router_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -32,6 +33,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             },
             function (myGames_component_1_1) {
                 myGames_component_1 = myGames_component_1_1;
+            },
+            function (searchResults_component_1_1) {
+                searchResults_component_1 = searchResults_component_1_1;
             },
             function (register_component_1_1) {
                 register_component_1 = register_component_1_1;
@@ -54,6 +58,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             function (game_service_1_1) {
                 game_service_1 = game_service_1_1;
             },
+            function (gameLibrary_service_1_1) {
+                gameLibrary_service_1 = gameLibrary_service_1_1;
+            },
             function (payment_service_1_1) {
                 payment_service_1 = payment_service_1_1;
             },
@@ -62,9 +69,11 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(authService) {
+                function AppComponent(authService, _router) {
                     this.authService = authService;
+                    this._router = _router;
                     this.pageTitle = "this is the first app component.";
+                    this.q = "";
                 }
                 AppComponent.prototype.ngOnInit = function () {
                     this.authService.CurrentUser = JSON.parse(sessionStorage.getItem('session-user'));
@@ -81,13 +90,17 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                     //this.user = user;
                     console.log(message);
                 };
+                AppComponent.prototype.search = function () {
+                    console.log('search ' + this.q);
+                    this._router.navigate(['Search', { q: this.q }]);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.component.html',
                         directives: [router_1.ROUTER_DIRECTIVES, login_component_1.LoginComponent, highlight_directive_1.HighlightDirective],
                         providers: [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS,
-                            auth_service_1.AuthService, game_service_1.GameService, payment_service_1.PaymentService,
+                            auth_service_1.AuthService, game_service_1.GameService, gameLibrary_service_1.GameLibraryService, payment_service_1.PaymentService,
                             usernameValidator_1.UsernameValidator
                         ]
                     }),
@@ -97,9 +110,10 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                         { path: '/myGames', name: 'MyGames', component: myGames_component_1.MyGamesComponent },
                         { path: '/register', name: 'Register', component: register_component_1.RegisterComponent },
                         { path: '/forgotPassword', name: 'ForgotPassword', component: forgotPassword_component_1.ForgotPasswordComponent },
-                        { path: '/payment', name: 'Payment', component: setupPayment_component_1.SetupPaymentComponent }
+                        { path: '/payment', name: 'Payment', component: setupPayment_component_1.SetupPaymentComponent },
+                        { path: '/search/:q', name: 'Search', component: searchResults_component_1.SearchResultsComponent }
                     ]), 
-                    __metadata('design:paramtypes', [auth_service_1.AuthService])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService, router_2.Router])
                 ], AppComponent);
                 return AppComponent;
             }());

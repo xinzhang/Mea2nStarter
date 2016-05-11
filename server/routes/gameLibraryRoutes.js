@@ -4,40 +4,43 @@ var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
 var util = require('util');
 
-gameLibraryRouter.route('/search')    
+gameLibraryRouter.route('/search/:q')
     .get(function (req, res) {
-        
-        var keywords = req.param.q
+
+        var keywords = req.params.q
 
         var url = 'mongodb://localhost:27017/MEA2N';
         mongodb.connect(url, function (err, db) {
 
             var collection = db.collection('games_library');
+
             collection.find({
-                    $text:{$search: keywords}
-                }, function (err, cursor) {
-                        if (err) res.status(400).send(err.errorMessage);
-                        
-                        var docs = [];
-                        cursor.each(function (err, item) {
-                            if (err || !item) {
-                                res.status(200).send(docs);
-                                db.close();
-                            }
-                            else {
-                                docs.push(item);
-                            }
-                        })
-                }); //end find
+                $text: { $search: keywords }
+            }, function (err, cursor) {
+                if (err) res.status(400).send(err.errorMessage);
+
+                var docs = [];
+                cursor.each(function (err, item) {
+                    if (err || !item) {
+                        console.log(err);
+                        res.status(404).send(docs);
+                        db.close();
+                    }
+                    else {
+                        docs.push(item);
+                    }
+                })
+            }); //end find
+
         });
 
     });
 
-gameLibraryRouter.route('/addToGames/:id')    
+gameLibraryRouter.route('/addToGames/:id')
     .get(function (req, res) {
         var _id_ = req.params.id;
         console.log('_id_ ' + _id_);
-        
+
         var url = 'mongodb://localhost:27017/MEA2N';
         mongodb.connect(url, function (err, db) {
 
@@ -49,16 +52,16 @@ gameLibraryRouter.route('/addToGames/:id')
                     var game = result;
 
                     db.collection('games').find({
-                        gameId: {"isin": game.isin}
+                        gameId: { "isin": game.isin }
                     }, function (err, cursor) {
                         if (err) res.status(400).send(err.errorMessage);
-                        
+
                         if (cursor.count() == 0) {
                             //add the game from library to rental
                             console.log(JSON.stringify(game));
                         }
-                        
-                        
+
+
                         //  var doc = {};
                         // doc.gameTitle = title;
                         // doc.releaseDate = jsonGameObj['release date'];
@@ -73,7 +76,7 @@ gameLibraryRouter.route('/addToGames/:id')
                         // doc.ageRating = jsonGameObj['Age Rating'];
                         // doc.gameId = i;
                         // doc.isin = randomString(10);
-                       
+
                     })
 
                 }

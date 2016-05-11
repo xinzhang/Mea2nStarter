@@ -20,7 +20,7 @@ export class PaymentService {
         let options = new RequestOptions({ headers: headers });
         
         return this._http.post(this._payment_url, JSON.stringify(data), options)
-            .map(resp => { resp.text() })
+            .map( resp => resp.text() )
             .catch(this.handleError);
     }
 

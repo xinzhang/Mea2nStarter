@@ -11,6 +11,7 @@
         "**/app/attributes/*.js": true,
         "**/app/shared/*.js": true,
         "**/app/game/*.js": true,
+        "**/app/gameLibrary/*.js": true,
         "**/*.map":true
     }, 
     "files.autoSave": "afterDelay"

@@ -9,7 +9,13 @@ export interface IGame {
     smallImageUrl: string;
     largeImageUrl: string;
     
+    edition: string,
+    exclusive: string,
+    genre: string,
+    ageRating: string,    
+    
     quantity: number;
     wishcount: number;
     queuecount: number;        
 }
+

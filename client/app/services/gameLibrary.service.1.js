@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1, Observable_1;
-    var PaymentService;
+    var GameService;
     return {
         setters:[
             function (core_1_1) {
@@ -24,33 +24,32 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                 Observable_1 = Observable_1_1;
             }],
         execute: function() {
-            PaymentService = (function () {
-                function PaymentService(_http) {
+            GameService = (function () {
+                function GameService(_http) {
                     this._http = _http;
-                    this._payment_url = '/payment/card';
-                    this.secret = "vD3FnO5n7elLWkK-z4zJpg";
-                    this.pubkey = "pk_R0jSerMKd4ZmzkmioV3Z3g";
+                    this._gamelib_search_url = '/gamelib/search';
+                    this._gamelib_addToRent_url = '/gamelib/addToRent';
+                    this.games = [];
                 }
-                PaymentService.prototype.process = function (data) {
-                    console.log("process");
-                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-                    var options = new http_1.RequestOptions({ headers: headers });
-                    return this._http.post(this._payment_url, JSON.stringify(data), options)
-                        .map(function (resp) { return resp.text(); })
+                GameService.prototype.search = function () {
+                    var _this = this;
+                    return this._http.get(this._gamelib_search_url)
+                        .map(function (resp) { return resp.json(); })
+                        .do(function (data) { return _this.games = data; })
                         .catch(this.handleError);
                 };
-                PaymentService.prototype.handleError = function (error) {
+                GameService.prototype.handleError = function (error) {
                     console.error(error);
                     return Observable_1.Observable.throw(error.json().error || 'Server error');
                 };
-                PaymentService = __decorate([
+                GameService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
-                ], PaymentService);
-                return PaymentService;
+                ], GameService);
+                return GameService;
             }());
-            exports_1("PaymentService", PaymentService);
+            exports_1("GameService", GameService);
         }
     }
 });
-//# sourceMappingURL=payment.service.js.map
+//# sourceMappingURL=gameLibrary.service.1.js.map
