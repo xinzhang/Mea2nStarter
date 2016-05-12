@@ -8,6 +8,7 @@ import {WelcomeComponent} from './home/welcome.component';
 import {NewReleaseComponent} from './home/newRelease.component';
 import {MyGamesComponent} from './home/myGames.component';
 import {SearchResultsComponent} from './gameLibrary/searchResults.component';
+import {GameDetailComponent} from './gameLibrary/gameDetail.component';
 
 import {RegisterComponent} from './auth/register.component';
 import {LoginComponent} from './auth/login.component';
@@ -39,6 +40,7 @@ import {UsernameValidator} from './validators/usernameValidator'
     { path: '/forgotPassword', name: 'ForgotPassword', component: ForgotPasswordComponent },
     { path: '/payment', name: 'Payment', component: SetupPaymentComponent },
     { path: '/search/:q', name: 'Search', component: SearchResultsComponent }
+    { path: '/gameDetail/:isin', name: 'GameDetail', component: GameDetailComponent }
 ])
 export class AppComponent implements OnInit {
     pageTitle: string = "this is the first app component.";
