@@ -51,7 +51,11 @@ System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.se
                     var _this = this;
                     var query = this._routeParams.get('q');
                     this._gameLibraryService.search(query)
-                        .subscribe(function (games) { return _this.games = games; }, function (error) { return _this.errorMessage = error; });
+                        .subscribe(function (games) {
+                        console.log('games: ');
+                        console.log(games);
+                        _this.games = games;
+                    }, function (error) { return _this.errorMessage = error; });
                 };
                 SearchResultsComponent.prototype.updatePlatformFilter = function (val) {
                     this.platformFilter = val;

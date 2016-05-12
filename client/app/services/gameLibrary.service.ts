@@ -20,12 +20,13 @@ export class GameLibraryService {
             .map ( 
                 (resp: Response) => <IGame[]>resp.json()
             )
-            .do( 
-                data => {
-                    console.log(data);
-                    this.games = data;
-                }
-            )
+            // .do( 
+            //     data => {
+            //         console.log('data returned');
+            //         console.log(data);
+            //         this.games = data;
+            //     }
+            // )
             .catch(this.handleError);
     }
     

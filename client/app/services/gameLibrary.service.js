@@ -32,13 +32,8 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this.games = [];
                 }
                 GameLibraryService.prototype.search = function (q) {
-                    var _this = this;
                     return this._http.get(this._gamelib_search_url + q)
                         .map(function (resp) { return resp.json(); })
-                        .do(function (data) {
-                        console.log(data);
-                        _this.games = data;
-                    })
                         .catch(this.handleError);
                 };
                 GameLibraryService.prototype.handleError = function (error) {

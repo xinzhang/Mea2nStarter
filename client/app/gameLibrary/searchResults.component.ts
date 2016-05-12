@@ -26,7 +26,7 @@ export class SearchResultsComponent implements OnInit {
     orderbyFilter: string = ''; 
     
     constructor(private _gameLibraryService: GameLibraryService, 
-        private _authService: AuthService
+        private _authService: AuthService,
         private _router: Router,
         private _routeParams: RouteParams) {        
     }
@@ -36,7 +36,11 @@ export class SearchResultsComponent implements OnInit {
         
         this._gameLibraryService.search(query)
             .subscribe(
-                games => this.games = games,
+                games => {
+                    console.log('games: ')
+                    console.log(games);
+                    this.games = games; 
+                },                    
                 error => this.errorMessage = <any>error
             );
     }

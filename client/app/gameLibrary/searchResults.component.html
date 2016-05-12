@@ -31,7 +31,7 @@
     <div class="col-sm-6 col-md-4" *ngFor='let g of games | gamePlatformFilter : platformFilter | gameOrderFilter: orderbyFilter'>
 
         <div class="thumbnail">
-            <img src="{{g.smallImageUrl}}" alt="{{g.gameTitle}" />
+            <img src="{{g.smallImageUrl}}" alt="{{g.gameTitle}" width="135" height="160"/>
         </div>
 
         <div class="caption">

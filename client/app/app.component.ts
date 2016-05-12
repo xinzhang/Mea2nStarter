@@ -37,7 +37,7 @@ import {UsernameValidator} from './validators/usernameValidator'
     { path: '/myGames', name: 'MyGames', component: MyGamesComponent },
     { path: '/register', name: 'Register', component: RegisterComponent },
     { path: '/forgotPassword', name: 'ForgotPassword', component: ForgotPasswordComponent },
-    { path: '/payment', name: 'Payment', component: SetupPaymentComponent }
+    { path: '/payment', name: 'Payment', component: SetupPaymentComponent },
     { path: '/search/:q', name: 'Search', component: SearchResultsComponent }
 ])
 export class AppComponent implements OnInit {

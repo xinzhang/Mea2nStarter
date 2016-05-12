@@ -21,15 +21,21 @@ gameLibraryRouter.route('/search/:q')
 
                 var docs = [];
                 cursor.each(function (err, item) {
-                    if (err || !item) {
+                    if (err) {
                         console.log(err);
-                        res.status(404).send(docs);
                         db.close();
+                        res.status(500).send(err.error);
                     }
-                    else {
+                    
+                    if (item != null) {
                         docs.push(item);
                     }
-                })
+                    else {
+                        db.close();
+                        res.status(200).send(docs);                        
+                    }                    
+                });
+                
             }); //end find
 
         });
