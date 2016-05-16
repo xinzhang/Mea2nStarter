@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.service', '../services/auth.service', '../services/game-platform.filter', '../services/game-order.filter'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/router', '../services/gameLibrary.service', '../services/auth.service', '../services/game-platform.filter', '../services/game-order.filter'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -35,11 +35,10 @@ System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.se
             }],
         execute: function() {
             SearchResultsComponent = (function () {
-                function SearchResultsComponent(_gameLibraryService, _authService, _router, _routeParams) {
+                function SearchResultsComponent(_gameLibraryService, _authService, _router) {
                     this._gameLibraryService = _gameLibraryService;
                     this._authService = _authService;
                     this._router = _router;
-                    this._routeParams = _routeParams;
                     this.pageTitle = "New Release";
                     this.games = [];
                     this.errorMessage = "";
@@ -47,15 +46,17 @@ System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.se
                     this.platformFilter = '';
                     this.orderbyFilter = '';
                 }
-                SearchResultsComponent.prototype.ngOnInit = function () {
+                SearchResultsComponent.prototype.routerOnActivate = function (curr) {
                     var _this = this;
-                    var query = this._routeParams.get('q');
+                    var query = curr.getParam('q');
                     this._gameLibraryService.search(query)
                         .subscribe(function (games) {
                         console.log('games: ');
                         console.log(games);
                         _this.games = games;
                     }, function (error) { return _this.errorMessage = error; });
+                };
+                SearchResultsComponent.prototype.ngOnInit = function () {
                 };
                 SearchResultsComponent.prototype.updatePlatformFilter = function (val) {
                     this.platformFilter = val;
@@ -70,7 +71,7 @@ System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.se
                         pipes: [game_platform_filter_1.GamePlatformFilterPipe, game_order_filter_1.GameOrderFilterPipe],
                         directives: [router_2.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [gameLibrary_service_1.GameLibraryService, auth_service_1.AuthService, router_1.Router, router_1.RouteParams])
+                    __metadata('design:paramtypes', [gameLibrary_service_1.GameLibraryService, auth_service_1.AuthService, router_1.Router])
                 ], SearchResultsComponent);
                 return SearchResultsComponent;
             }());

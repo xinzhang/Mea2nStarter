@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.service', '../services/auth.service'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/router', '../services/gameLibrary.service', '../services/auth.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -29,22 +29,23 @@ System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.se
             }],
         execute: function() {
             GameDetailComponent = (function () {
-                function GameDetailComponent(_gameLibraryService, _authService, _router, _routeParams) {
+                function GameDetailComponent(_gameLibraryService, _authService, _router) {
                     this._gameLibraryService = _gameLibraryService;
                     this._authService = _authService;
                     this._router = _router;
-                    this._routeParams = _routeParams;
                     this.pageTitle = "Detail";
                     this.game = null;
                     this.errorMessage = "";
                 }
-                GameDetailComponent.prototype.ngOnInit = function () {
+                GameDetailComponent.prototype.routerOnActivate = function (curr) {
                     var _this = this;
-                    var isin = this._routeParams.get('isin');
+                    var isin = curr.getParam('isin');
                     this._gameLibraryService.getByIsin(isin)
                         .subscribe(function (g) {
                         _this.game = g;
                     }, function (error) { return _this.errorMessage = error; });
+                };
+                GameDetailComponent.prototype.ngOnInit = function () {
                 };
                 GameDetailComponent = __decorate([
                     core_1.Component({
@@ -52,7 +53,7 @@ System.register(['angular2/core', 'angular2/router', '../services/gameLibrary.se
                         templateUrl: 'app/gameLibrary/gameDetail.component.html',
                         directives: [router_2.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [gameLibrary_service_1.GameLibraryService, auth_service_1.AuthService, router_1.Router, router_1.RouteParams])
+                    __metadata('design:paramtypes', [gameLibrary_service_1.GameLibraryService, auth_service_1.AuthService, router_1.Router])
                 ], GameDetailComponent);
                 return GameDetailComponent;
             }());

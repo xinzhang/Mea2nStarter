@@ -1,7 +1,6 @@
-import {Component, OnInit} from 'angular2/core';
-import {ROUTER_PROVIDERS, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
-import { RouteParams, Router } from 'angular2/router';
-import { HTTP_PROVIDERS } from 'angular2/http';
+import {Component, OnInit} from '@angular/core';
+import {ROUTER_PROVIDERS, Routes, ROUTER_DIRECTIVES, Router} from '@angular/router'
+import { HTTP_PROVIDERS } from '@angular/http';
 import 'rxjs/Rx'; //load all features
 
 import {WelcomeComponent} from './home/welcome.component';
@@ -32,15 +31,15 @@ import {UsernameValidator} from './validators/usernameValidator'
         UsernameValidator
     ]
 })
-@RouteConfig([
-    { path: '/welcome', name: 'Welcome', component: WelcomeComponent, useAsDefault: true },
-    { path: '/newRelease', name: 'NewRelease', component: NewReleaseComponent },
-    { path: '/myGames', name: 'MyGames', component: MyGamesComponent },
-    { path: '/register', name: 'Register', component: RegisterComponent },
-    { path: '/forgotPassword', name: 'ForgotPassword', component: ForgotPasswordComponent },
-    { path: '/payment', name: 'Payment', component: SetupPaymentComponent },
-    { path: '/search/:q', name: 'Search', component: SearchResultsComponent },
-    { path: '/gameDetail/:isin', name: 'GameDetail', component: GameDetailComponent }
+@Routes([
+    { path: '/welcome', component: WelcomeComponent},
+    { path: '/newRelease', component: NewReleaseComponent },
+    { path: '/myGames', component: MyGamesComponent },
+    { path: '/register', component: RegisterComponent },
+    { path: '/forgotPassword', component: ForgotPasswordComponent },
+    { path: '/payment', component: SetupPaymentComponent },
+    { path: '/search/:q', component: SearchResultsComponent },
+    { path: '/gameDetail/:isin', component: GameDetailComponent }
 ])
 export class AppComponent implements OnInit {
     pageTitle: string = "this is the first app component.";

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './home/myGames.component', './gameLibrary/searchResults.component', './gameLibrary/gameDetail.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './auth/setupPayment.component', './attributes/highlight.directive', './services/auth.service', './services/game.service', './services/gameLibrary.service', './services/payment.service', './validators/usernameValidator'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './home/myGames.component', './gameLibrary/searchResults.component', './gameLibrary/gameDetail.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './auth/setupPayment.component', './attributes/highlight.directive', './services/auth.service', './services/game.service', './services/gameLibrary.service', './services/payment.service', './validators/usernameValidator'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, router_2, http_1, welcome_component_1, newRelease_component_1, myGames_component_1, searchResults_component_1, gameDetail_component_1, register_component_1, login_component_1, forgotPassword_component_1, setupPayment_component_1, highlight_directive_1, auth_service_1, game_service_1, gameLibrary_service_1, payment_service_1, usernameValidator_1;
+    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, myGames_component_1, searchResults_component_1, gameDetail_component_1, register_component_1, login_component_1, forgotPassword_component_1, setupPayment_component_1, highlight_directive_1, auth_service_1, game_service_1, gameLibrary_service_1, payment_service_1, usernameValidator_1;
     var AppComponent;
     return {
         setters:[
@@ -19,7 +19,6 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
             },
             function (router_1_1) {
                 router_1 = router_1_1;
-                router_2 = router_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -107,17 +106,17 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', 'rxjs/Rx',
                             usernameValidator_1.UsernameValidator
                         ]
                     }),
-                    router_1.RouteConfig([
-                        { path: '/welcome', name: 'Welcome', component: welcome_component_1.WelcomeComponent, useAsDefault: true },
-                        { path: '/newRelease', name: 'NewRelease', component: newRelease_component_1.NewReleaseComponent },
-                        { path: '/myGames', name: 'MyGames', component: myGames_component_1.MyGamesComponent },
-                        { path: '/register', name: 'Register', component: register_component_1.RegisterComponent },
-                        { path: '/forgotPassword', name: 'ForgotPassword', component: forgotPassword_component_1.ForgotPasswordComponent },
-                        { path: '/payment', name: 'Payment', component: setupPayment_component_1.SetupPaymentComponent },
-                        { path: '/search/:q', name: 'Search', component: searchResults_component_1.SearchResultsComponent },
-                        { path: '/gameDetail/:isin', name: 'GameDetail', component: gameDetail_component_1.GameDetailComponent }
+                    router_1.Routes([
+                        { path: '/welcome', component: welcome_component_1.WelcomeComponent },
+                        { path: '/newRelease', component: newRelease_component_1.NewReleaseComponent },
+                        { path: '/myGames', component: myGames_component_1.MyGamesComponent },
+                        { path: '/register', component: register_component_1.RegisterComponent },
+                        { path: '/forgotPassword', component: forgotPassword_component_1.ForgotPasswordComponent },
+                        { path: '/payment', component: setupPayment_component_1.SetupPaymentComponent },
+                        { path: '/search/:q', component: searchResults_component_1.SearchResultsComponent },
+                        { path: '/gameDetail/:isin', component: gameDetail_component_1.GameDetailComponent }
                     ]), 
-                    __metadata('design:paramtypes', [auth_service_1.AuthService, router_2.Router])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
                 ], AppComponent);
                 return AppComponent;
             }());

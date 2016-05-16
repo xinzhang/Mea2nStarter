@@ -1,13 +1,13 @@
-import {Component, Output, EventEmitter} from 'angular2/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {
     FormBuilder,
     Validators,
     Control,
     ControlGroup,
     FORM_DIRECTIVES
-} from 'angular2/common';
+} from '@angular/common';
 
-import {RouteParams, Router} from 'angular2/router';
+import {Router} from '@angular/router';
 
 import {AuthService} from '../services/auth.service';
 

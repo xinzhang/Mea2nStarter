@@ -1,11 +1,11 @@
-import {Component, OnInit} from 'angular2/core';
-import { RouteParams, Router } from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import { Router, RouteSegment, OnActivate } from '@angular/router';
 
 import {IGame} from '../services/game';
 import {GameService} from '../services/game.service';
 import {GameLibraryService} from '../services/gameLibrary.service';
 import {AuthService} from '../services/auth.service';
-import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     selector: 'search-results',
@@ -19,12 +19,11 @@ export class GameDetailComponent implements OnInit {
         
     constructor(private _gameLibraryService: GameLibraryService, 
         private _authService: AuthService,
-        private _router: Router,
-        private _routeParams: RouteParams) {        
+        private _router: Router) {            
     }
     
-    ngOnInit(): void {
-        let isin = this._routeParams.get('isin');
+    routerOnActivate(curr: RouteSegment): void {
+        let isin = curr.getParam('isin');
         
         this._gameLibraryService.getByIsin(isin)
             .subscribe(
@@ -32,7 +31,10 @@ export class GameDetailComponent implements OnInit {
                     this.game = g; 
                 },                    
                 error => this.errorMessage = <any>error
-            );
+            );        
+    }
+    
+    ngOnInit(): void {
     }
         
         

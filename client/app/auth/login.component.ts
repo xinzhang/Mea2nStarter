@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core';
-import {RouteParams, Router} from 'angular2/router';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Router} from '@angular/router';
  
 import {AuthService} from '../services/auth.service';
 

@@ -1,9 +1,9 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit} from '@angular/core';
 
 import {IGame} from '../services/game';
 import {GameService} from '../services/game.service';
 import {AuthService} from '../services/auth.service';
-import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { GamePlatformFilterPipe } from '../services/game-platform.filter';
 import { GameOrderFilterPipe } from '../services/game-order.filter';
 
