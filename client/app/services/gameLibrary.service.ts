@@ -9,6 +9,7 @@ import {IGame} from './game';
 export class GameLibraryService {                
     private _gamelib_search_url = '/gamelib/search/';
     private _gamelib_addToRent_url = '/gamelib/addToRent';
+    private _gamelib_detail_url = '/gamelib/detail/';
     
     constructor(private _http: Http) { }
 
@@ -27,6 +28,14 @@ export class GameLibraryService {
             //         this.games = data;
             //     }
             // )
+            .catch(this.handleError);
+    }
+    
+    getByIsin(isin:string): Observable<IGame> {
+        return this._http.get(this._gamelib_detail_url + isin)
+            .map (
+                (resp:Response) => <IGame>resp.json()
+            )
             .catch(this.handleError);
     }
     

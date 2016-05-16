@@ -29,10 +29,16 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this._http = _http;
                     this._gamelib_search_url = '/gamelib/search/';
                     this._gamelib_addToRent_url = '/gamelib/addToRent';
+                    this._gamelib_detail_url = '/gamelib/detail/';
                     this.games = [];
                 }
                 GameLibraryService.prototype.search = function (q) {
                     return this._http.get(this._gamelib_search_url + q)
+                        .map(function (resp) { return resp.json(); })
+                        .catch(this.handleError);
+                };
+                GameLibraryService.prototype.getByIsin = function (isin) {
+                    return this._http.get(this._gamelib_detail_url + isin)
                         .map(function (resp) { return resp.json(); })
                         .catch(this.handleError);
                 };
