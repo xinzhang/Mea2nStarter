@@ -94,7 +94,7 @@ System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx',
                 };
                 AppComponent.prototype.search = function () {
                     console.log('search ' + this.q);
-                    this._router.navigate(['Search', { q: this.q }]);
+                    this._router.navigate(['/search', this.q]);
                 };
                 AppComponent = __decorate([
                     core_1.Component({

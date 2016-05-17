@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
     
     search(): void {
         console.log('search ' + this.q);
-        this._router.navigate(['Search', {q:this.q}]);         
+        this._router.navigate(['/search', this.q]);         
     }
     
 }
