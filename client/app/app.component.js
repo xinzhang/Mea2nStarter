@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './home/myGames.component', './gameLibrary/searchResults.component', './gameLibrary/gameDetail.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './auth/setupPayment.component', './attributes/highlight.directive', './services/auth.service', './services/game.service', './services/gameLibrary.service', './services/payment.service', './validators/usernameValidator'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx', './home/welcome.component', './home/newRelease.component', './home/myGames.component', './gameLibrary/searchResults.component', './gameLibrary/gameDetail.component', './auth/register.component', './auth/login.component', './auth/forgotPassword.component', './auth/setupPayment.component', './attributes/highlight.directive', './services/auth.service', './services/game.service', './services/gameLibrary.service', './services/payment.service', './validators/usernameValidator', "notifications"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, myGames_component_1, searchResults_component_1, gameDetail_component_1, register_component_1, login_component_1, forgotPassword_component_1, setupPayment_component_1, highlight_directive_1, auth_service_1, game_service_1, gameLibrary_service_1, payment_service_1, usernameValidator_1;
+    var core_1, router_1, http_1, welcome_component_1, newRelease_component_1, myGames_component_1, searchResults_component_1, gameDetail_component_1, register_component_1, login_component_1, forgotPassword_component_1, setupPayment_component_1, highlight_directive_1, auth_service_1, game_service_1, gameLibrary_service_1, payment_service_1, usernameValidator_1, notifications_1;
     var AppComponent;
     return {
         setters:[
@@ -68,14 +68,29 @@ System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx',
             },
             function (usernameValidator_1_1) {
                 usernameValidator_1 = usernameValidator_1_1;
+            },
+            function (notifications_1_1) {
+                notifications_1 = notifications_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(authService, _router) {
+                function AppComponent(authService, _notifyService, _router) {
                     this.authService = authService;
+                    this._notifyService = _notifyService;
                     this._router = _router;
                     this.pageTitle = "this is the first app component.";
                     this.q = "";
+                    this.options = {
+                        timeOut: 5000,
+                        lastOnBottom: true,
+                        clickToClose: true,
+                        maxLength: 0,
+                        maxStack: 7,
+                        showProgressBar: true,
+                        pauseOnHover: true,
+                        preventDuplicates: false,
+                        preventLastDuplicates: "visible"
+                    };
                 }
                 AppComponent.prototype.ngOnInit = function () {
                     this.authService.CurrentUser = JSON.parse(sessionStorage.getItem('session-user'));
@@ -96,14 +111,18 @@ System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx',
                     console.log('search ' + this.q);
                     this._router.navigate(['/search', this.q]);
                 };
+                AppComponent.prototype.showNotification = function () {
+                    var html = "<p>Test</p><p>A nother test</p>";
+                    this._notifyService.html(html, 'success');
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES, login_component_1.LoginComponent, highlight_directive_1.HighlightDirective],
+                        directives: [router_1.ROUTER_DIRECTIVES, login_component_1.LoginComponent, highlight_directive_1.HighlightDirective, notifications_1.SimpleNotificationsComponent],
                         providers: [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS,
                             auth_service_1.AuthService, game_service_1.GameService, gameLibrary_service_1.GameLibraryService, payment_service_1.PaymentService,
-                            usernameValidator_1.UsernameValidator
+                            usernameValidator_1.UsernameValidator, notifications_1.NotificationsService
                         ]
                     }),
                     router_1.Routes([
@@ -116,9 +135,10 @@ System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx',
                         { path: '/search/:q', component: searchResults_component_1.SearchResultsComponent },
                         { path: '/gameDetail/:isin', component: gameDetail_component_1.GameDetailComponent }
                     ]), 
-                    __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService, (typeof (_a = typeof notifications_1.NotificationsService !== 'undefined' && notifications_1.NotificationsService) === 'function' && _a) || Object, router_1.Router])
                 ], AppComponent);
                 return AppComponent;
+                var _a;
             }());
             exports_1("AppComponent", AppComponent);
         }

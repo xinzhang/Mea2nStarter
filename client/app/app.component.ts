@@ -20,15 +20,17 @@ import {AuthService} from './services/auth.service';
 import {GameService} from './services/game.service';
 import {GameLibraryService} from './services/gameLibrary.service';
 import {PaymentService} from './services/payment.service';
-import {UsernameValidator} from './validators/usernameValidator'
+import {UsernameValidator} from './validators/usernameValidator';
+
+import {NotificationsService, SimpleNotificationsComponent} from "notifications"
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
-    directives: [ROUTER_DIRECTIVES, LoginComponent, HighlightDirective],
+    directives: [ROUTER_DIRECTIVES, LoginComponent, HighlightDirective, SimpleNotificationsComponent],
     providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, 
         AuthService, GameService, GameLibraryService, PaymentService, 
-        UsernameValidator
+        UsernameValidator, NotificationsService
     ]
 })
 @Routes([
@@ -45,8 +47,22 @@ export class AppComponent implements OnInit {
     pageTitle: string = "this is the first app component.";
     q: string = "";
     
-    constructor(public authService : AuthService, private _router: Router) {        
+    constructor(public authService : AuthService,
+                private _notifyService: NotificationsService
+                private _router: Router) {        
     }
+    
+    public options = {
+        timeOut: 5000,
+        lastOnBottom: true,
+        clickToClose: true,
+        maxLength: 0,
+        maxStack: 7,
+        showProgressBar: true,
+        pauseOnHover: true,
+        preventDuplicates: false,
+        preventLastDuplicates: "visible"
+    };
     
     ngOnInit(): void {
         this.authService.CurrentUser = JSON.parse(sessionStorage.getItem('session-user'));                        
@@ -70,4 +86,8 @@ export class AppComponent implements OnInit {
         this._router.navigate(['/search', this.q]);         
     }
     
+    showNotification(): void {
+        var html = `<p>Test</p><p>A nother test</p>`;
+        this._notifyService.html(html, 'success');
+    }
 }
