@@ -1,3 +1,3 @@
 node_modules/
-./client/app/*.js
-./client/app/*.js.map
+./client/app/**/*.js
+./client/app/**/*.map
