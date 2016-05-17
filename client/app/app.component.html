@@ -9,16 +9,16 @@
 
             <div class="navbar-header">
                 <a href="/index.html" class="brand navbar-brand" title="MEA2N Starter Kit test">
-                        <span [myHighlight]="" [defaultColor]="'white'">MEA2N</span>
-                    </a>
+                    <span [myHighlight]="" [defaultColor]="'white'">MEA2N</span>
+                </a>
             </div>
 
             <ul class="nav navbar-nav">
                 <li>
-                    <a [routerLink]="['/welcome']">Welcome</a> 
+                    <a [routerLink]="['/welcome']">Welcome</a>
                 </li>
-                <li>                    
-                    <a [routerLink]="['/newRelease']">New Release</a>                    
+                <li>
+                    <a [routerLink]="['/newRelease']">New Release</a>
                 </li>
                 <li>
                     <a [routerLink]="['/payment']" style="display:block">Payment</a>
@@ -28,31 +28,44 @@
                 </li>
                 <li>
                     <a (click)="showNotification();">show nofication</a>
-                </li>                
+                </li>
+                <li>
+                    <a (click)="modal.open();">show modal</a>
+                </li>
             </ul>
-            
+
             <simple-notifications [options]="options"></simple-notifications>
-            
+
+            <modal #modal>
+                <modal-header [show-close]="true">
+                    <h4 class="modal-title">I'm a modal!</h4>
+                </modal-header>
+                <modal-body>
+                    Hello World!
+                </modal-body>
+                <modal-footer [show-default-buttons]="true"></modal-footer>
+            </modal>
+
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="authService.CurrentUser != null " class="dropdown" id="menuWelcome">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navWelcome">
                         Welcome, {{authService.CurrentUser.email}}
                     </a>
-                    <div class="dropdown-menu" style="padding:17px;">                        
+                    <div class="dropdown-menu" style="padding:17px;">
                         <a [routerLink]="['MyGames']" style="display:block">My Collections</a>
-                        <a [routerLink]="['Payment']" style="display:block">Payment</a>                       
+                        <a [routerLink]="['Payment']" style="display:block">Payment</a>
                         <a style="display:block">Market</a>
-                        <a style="display:block">Tracking</a>                        
+                        <a style="display:block">Tracking</a>
                     </div>
                 </li>
-                <li *ngIf= "authService.CurrentUser!=null">
+                <li *ngIf="authService.CurrentUser!=null">
                     <a (click)="signout()"><i class="glyphicon glyphicon-log-out"></i></a>
                 </li>
                 <li id="menuRegister" *ngIf="authService.CurrentUser==null">
                     <a [routerLink]="['Register']" title="Fast and free sign up!" id="navRegister">
                         <span class="glyphicon glyphicon-registration-mark"></span> Register
                     </a>
-                </li>                
+                </li>
                 <li class="dropdown" id="menuLogin" *ngIf="authService.CurrentUser==null">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
                         <span class="glyphicon glyphicon-log-in"></span> Login
@@ -72,7 +85,7 @@
                             <input name="verify" id="inputVerify" type="password" placeholder="Password (again)" required=""><br>
                             <button type="button" id="btnRegister" class="btn">Sign Up</button>
                         </form>-->
-                        <a style="display:block" data-toggle="modal" role="button" [routerLink]="['ForgotPassword']">Forgot username or password?</a>                        
+                        <a style="display:block" data-toggle="modal" role="button" [routerLink]="['ForgotPassword']">Forgot username or password?</a>
                         <a class="list-style" data-toggle="modal" role="button" href="#contactModal"><small>Need help? Contact us</small></a>
                     </div>
                 </li>
@@ -88,7 +101,7 @@
                     </div>
                 </form>
             </div>
-            
+
         </div>
     </div>
 </div>
