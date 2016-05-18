@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
     modal: ModalComponent;
     
     constructor(public authService : AuthService,
-                private _notifyService: NotificationsService
+                private _notifyService: NotificationsService,
                 private _router: Router) {        
     }
     
