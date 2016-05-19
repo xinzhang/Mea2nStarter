@@ -18,25 +18,19 @@
                     <a [routerLink]="['/welcome']">Welcome</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/newRelease']">New Release</a>
+                    <a [routerLink]="['/newRelease']">New Rentals</a>
                 </li>
-                <li>
-                    <a [routerLink]="['/payment']" style="display:block">Payment</a>
-                </li>
-                <li>
-                    <a [routerLink]="['/myGames']" style="display:block">My Collections</a>
-                </li>
-                <li>
+                <!--<li>
                     <a (click)="showNotification();">show nofication</a>
                 </li>
                 <li>
                     <a (click)="modal.open();">show modal</a>
-                </li>
+                </li>-->
             </ul>
 
-            <simple-notifications [options]="options"></simple-notifications>
+            <!--<simple-notifications [options]="options"></simple-notifications>-->
 
-            <modal #modal>
+            <!--<modal #modal>
                 <modal-header [show-close]="true">
                     <h4 class="modal-title">I'm a modal!</h4>
                 </modal-header>
@@ -44,7 +38,7 @@
                     Hello World!
                 </modal-body>
                 <modal-footer [show-default-buttons]="true"></modal-footer>
-            </modal>
+            </modal>-->
 
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="authService.CurrentUser != null " class="dropdown" id="menuWelcome">
@@ -52,8 +46,8 @@
                         Welcome, {{authService.CurrentUser.email}}
                     </a>
                     <div class="dropdown-menu" style="padding:17px;">
-                        <a [routerLink]="['MyGames']" style="display:block">My Collections</a>
-                        <a [routerLink]="['Payment']" style="display:block">Payment</a>
+                        <a [routerLink]="['/myGames']" style="display:block">My Collections</a>
+                        <a [routerLink]="['/payment']" style="display:block">Payment</a>
                         <a style="display:block">Market</a>
                         <a style="display:block">Tracking</a>
                     </div>

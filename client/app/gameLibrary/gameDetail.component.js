@@ -33,7 +33,7 @@ System.register(['@angular/core', '@angular/router', '../services/gameLibrary.se
                     this._gameLibraryService = _gameLibraryService;
                     this._authService = _authService;
                     this._router = _router;
-                    this.pageTitle = "Detail";
+                    this.pageTitle = "";
                     this.game = null;
                     this.errorMessage = "";
                 }
@@ -42,14 +42,16 @@ System.register(['@angular/core', '@angular/router', '../services/gameLibrary.se
                     var isin = curr.getParam('isin');
                     this._gameLibraryService.getByIsin(isin)
                         .subscribe(function (g) {
+                        console.log(g);
                         _this.game = g;
+                        _this.pageTitle = g.gameTitle;
                     }, function (error) { return _this.errorMessage = error; });
                 };
                 GameDetailComponent.prototype.ngOnInit = function () {
                 };
                 GameDetailComponent = __decorate([
                     core_1.Component({
-                        selector: 'search-results',
+                        selector: 'game-detail',
                         templateUrl: 'app/gameLibrary/gameDetail.component.html',
                         directives: [router_2.ROUTER_DIRECTIVES]
                     }), 

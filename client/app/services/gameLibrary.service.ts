@@ -8,7 +8,7 @@ import {IGame} from './game';
 @Injectable()
 export class GameLibraryService {                
     private _gamelib_search_url = '/gamelib/search/';
-    private _gamelib_addToRent_url = '/gamelib/addToRent';
+    private _gamelib_addToRent_url = '/gamelib/addToRent/';
     private _gamelib_detail_url = '/gamelib/detail/';
     
     constructor(private _http: Http) { }
@@ -34,6 +34,14 @@ export class GameLibraryService {
     getByIsin(isin:string): Observable<IGame> {
         return this._http.get(this._gamelib_detail_url + isin)
             .map (
+                (resp:Response) => <IGame>resp.json()
+            )
+            .catch(this.handleError);
+    }
+    
+    addToRental(isin:string): Observable<IGame> {
+        return this._http.get(this._gamelib_addToRent_url + isin)
+            .map(
                 (resp:Response) => <IGame>resp.json()
             )
             .catch(this.handleError);

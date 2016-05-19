@@ -135,7 +135,7 @@ System.register(['@angular/core', '@angular/router', '@angular/http', 'rxjs/Rx',
                         ]
                     }),
                     router_1.Routes([
-                        { path: '/welcome', component: welcome_component_1.WelcomeComponent },
+                        { path: '/welcome', component: welcome_component_1.WelcomeComponent, useAsDefault: true },
                         { path: '/newRelease', component: newRelease_component_1.NewReleaseComponent },
                         { path: '/myGames', component: myGames_component_1.MyGamesComponent },
                         { path: '/register', component: register_component_1.RegisterComponent },

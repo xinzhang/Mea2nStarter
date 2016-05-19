@@ -8,12 +8,12 @@ import {AuthService} from '../services/auth.service';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
-    selector: 'search-results',
+    selector: 'game-detail',
     templateUrl: 'app/gameLibrary/gameDetail.component.html',    
     directives: [ROUTER_DIRECTIVES]
 })
 export class GameDetailComponent implements OnInit {
-    pageTitle: string = "Detail";
+    pageTitle: string = "";
     game:IGame = null;
     errorMessage:string = "";
         
@@ -28,7 +28,9 @@ export class GameDetailComponent implements OnInit {
         this._gameLibraryService.getByIsin(isin)
             .subscribe(
                 g => {
-                    this.game = g; 
+                    console.log(g);
+                    this.game = g;
+                    this.pageTitle = g.gameTitle; 
                 },                    
                 error => this.errorMessage = <any>error
             );        
@@ -36,48 +38,5 @@ export class GameDetailComponent implements OnInit {
     
     ngOnInit(): void {
     }
-        
-        
-    // addToCollection(g: IGame): void {
-    //     this._gameService.AddToMy('collection', g.gameId)
-    //         .subscribe(
-    //             data => {                    
-    //                 this._authService.CurrentUser.myCollection.push(g.gameId);
-    //             },
-    //             error => this.errorMessage = <any> error  
-    //         );        
-    // }
-    
-    // addToWish(g: IGame): void {
-    //      this._gameService.AddToMy('wishlist', g.gameId)
-    //         .subscribe(
-    //             data => {
-    //                 this._authService.CurrentUser.myWishlist.push(g.gameId);                    
-    //             },
-    //             error => this.errorMessage = <any> error  
-    //         ); 
-    // }
-    
-    // isInMy(type: string, gameId: number) {
-        
-    //     if (this._authService.CurrentUser == null)
-    //         return false;
-        
-    //     if (type == 'collection') {
-    //         if (this._authService.CurrentUser.myCollection == null || this._authService.CurrentUser.myCollection.length == 0)
-    //             return false;
-            
-    //         return (this._authService.CurrentUser.myCollection.indexOf(gameId) > -1)
-    //     }
-        
-    //     if (type == 'wishlist') {
-    //         if (this._authService.CurrentUser.myWishlist== null || this._authService.CurrentUser.myWishlist.length == 0)
-    //             return false;
-            
-    //         return (this._authService.CurrentUser.myWishlist.indexOf(gameId) > -1)            
-    //     }
-        
-    //     return false;
-    // }
     
 }

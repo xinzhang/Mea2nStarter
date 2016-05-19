@@ -42,54 +42,81 @@ gameLibraryRouter.route('/search/:q')
 
     });
 
-gameLibraryRouter.route('/addToGames/:id')
+gameLibraryRouter.route('/addToRent/:isin')
     .get(function (req, res) {
-        var _id_ = req.params.id;
-        console.log('_id_ ' + _id_);
+        var isin = req.params.isin;
+        
+        var url = 'mongodb://localhost:27017/MEA2N';
+        mongodb.connect(url, function (err, db) {
+
+            var collection = db.collection('games_library');
+            collection.findOne({
+                isin: isin
+            },
+                function (err, result) {
+                    var lib_game = result;
+
+                    db.collection('games').find({
+                        gameId: { "isin": isin }
+                    }, function (err, cursor) {
+                        if (err) res.status(400).send(err.errorMessage);
+                                                
+                        if (cursor.currentObj == null) {
+                            //add the game from library to rental   
+                            lib_game._id = null; 
+                            if (lib_game.quantity == "undefined")
+                                lib_game.quantity = 1;
+                            else
+                                lib_game.quantity = lib_game.quantity + 1;
+
+                            lib_game.rentalAvailable = true;
+                                                   
+                            db.collection('games').insertOne(lib_game, function(err, result){
+                                if (err) throw err;
+                                res.status(200).send(result);        
+                            })                          
+                        }
+                        else {
+                            var currentObj = cursor.currentObj;
+                            
+                            if (currentObj.quantity == "undefined")
+                                currentObj.quantity = 1;
+                            else
+                                currentObj.quantity = currentObj.quantity + 1;
+                                
+                            console.log(currentObj);                                                            
+                            currentObj.rentalAvailable = true;
+                            
+                            db.collection('games').update(currentObj, function(err, result){
+                                if (err) throw err;
+                                res.status(200).send(result);                                        
+                            });
+                        }
+                    })//end find from games
+                }
+                
+            ); //end findOne from games_library 
+        });
+    });
+    
+ gameLibraryRouter.route('/detail/:isin')
+    .get(function (req, res) {
+        var isin = req.params.isin;
 
         var url = 'mongodb://localhost:27017/MEA2N';
         mongodb.connect(url, function (err, db) {
 
             var collection = db.collection('games_library');
             collection.findOne({
-                _id: _id_
+                isin: isin
             },
                 function (err, result) {
-                    var game = result;
-
-                    db.collection('games').find({
-                        gameId: { "isin": game.isin }
-                    }, function (err, cursor) {
-                        if (err) res.status(400).send(err.errorMessage);
-
-                        if (cursor.count() == 0) {
-                            //add the game from library to rental
-                            console.log(JSON.stringify(game));
-                        }
-
-
-                        //  var doc = {};
-                        // doc.gameTitle = title;
-                        // doc.releaseDate = jsonGameObj['release date'];
-                        // doc.platform = 'ps4';
-                        // doc.publisher = jsonGameObj.Publisher;
-                        // doc.smallImageUrl = jsonGameObj['Box Art'];
-                        // doc.largeImageUrl = '';
-                        // doc.quanity = 9999;                     
-                        // doc.edition = 'standard';
-                        // doc.exclusive = jsonGameObj.Exclusive;
-                        // doc.genre = jsonGameObj.Genre;
-                        // doc.ageRating = jsonGameObj['Age Rating'];
-                        // doc.gameId = i;
-                        // doc.isin = randomString(10);
-
-                    })
-
+                    if (err) res.status(400).send(err.errorMessage);                    
+                    res.status(200).send(result);
                 }
 
             ); //end findOne     
         });
-
     });
 
 module.exports = gameLibraryRouter;

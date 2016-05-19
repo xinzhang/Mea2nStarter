@@ -51,8 +51,6 @@ System.register(['@angular/core', '@angular/router', '../services/gameLibrary.se
                     var query = curr.getParam('q');
                     this._gameLibraryService.search(query)
                         .subscribe(function (games) {
-                        console.log('games: ');
-                        console.log(games);
                         _this.games = games;
                     }, function (error) { return _this.errorMessage = error; });
                 };
@@ -63,6 +61,14 @@ System.register(['@angular/core', '@angular/router', '../services/gameLibrary.se
                 };
                 SearchResultsComponent.prototype.orderby = function (val) {
                     this.orderbyFilter = val;
+                };
+                SearchResultsComponent.prototype.addToRental = function (isin) {
+                    var _this = this;
+                    this._gameLibraryService.addToRental(isin)
+                        .subscribe(function (g) {
+                        var currentGame = _this.games.find(function (x) { return x.isin == isin; });
+                        currentGame = g;
+                    }, function (error) { return _this.errorMessage = error; });
                 };
                 SearchResultsComponent = __decorate([
                     core_1.Component({

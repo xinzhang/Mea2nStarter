@@ -33,10 +33,7 @@ export class SearchResultsComponent implements OnInit {
     routerOnActivate(curr: RouteSegment): void {
         let query = curr.getParam('q');
         this._gameLibraryService.search(query)
-            .subscribe(
-            games => {
-                console.log('games: ')
-                console.log(games);
+            .subscribe( games => {
                 this.games = games;
             },
             error => this.errorMessage = <any>error
@@ -53,47 +50,15 @@ export class SearchResultsComponent implements OnInit {
     orderby(val: string): void {
         this.orderbyFilter = val;
     }
-
-    // addToCollection(g: IGame): void {
-    //     this._gameService.AddToMy('collection', g.gameId)
-    //         .subscribe(
-    //             data => {                    
-    //                 this._authService.CurrentUser.myCollection.push(g.gameId);
-    //             },
-    //             error => this.errorMessage = <any> error  
-    //         );        
-    // }
-
-    // addToWish(g: IGame): void {
-    //      this._gameService.AddToMy('wishlist', g.gameId)
-    //         .subscribe(
-    //             data => {
-    //                 this._authService.CurrentUser.myWishlist.push(g.gameId);                    
-    //             },
-    //             error => this.errorMessage = <any> error  
-    //         ); 
-    // }
-
-    // isInMy(type: string, gameId: number) {
-
-    //     if (this._authService.CurrentUser == null)
-    //         return false;
-
-    //     if (type == 'collection') {
-    //         if (this._authService.CurrentUser.myCollection == null || this._authService.CurrentUser.myCollection.length == 0)
-    //             return false;
-
-    //         return (this._authService.CurrentUser.myCollection.indexOf(gameId) > -1)
-    //     }
-
-    //     if (type == 'wishlist') {
-    //         if (this._authService.CurrentUser.myWishlist== null || this._authService.CurrentUser.myWishlist.length == 0)
-    //             return false;
-
-    //         return (this._authService.CurrentUser.myWishlist.indexOf(gameId) > -1)            
-    //     }
-
-    //     return false;
-    // }
+    
+    addToRental(isin:string): void {
+        this._gameLibraryService.addToRental(isin)
+            .subscribe( (g)=>{
+                    var currentGame = this.games.find(x => x.isin == isin);
+                    currentGame = g;
+                },
+                error => this.errorMessage = <any>error
+            );
+    }
 
 }

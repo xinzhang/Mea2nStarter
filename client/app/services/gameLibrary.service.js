@@ -28,7 +28,7 @@ System.register(['@angular/core', '@angular/http', 'rxjs/Observable'], function(
                 function GameLibraryService(_http) {
                     this._http = _http;
                     this._gamelib_search_url = '/gamelib/search/';
-                    this._gamelib_addToRent_url = '/gamelib/addToRent';
+                    this._gamelib_addToRent_url = '/gamelib/addToRent/';
                     this._gamelib_detail_url = '/gamelib/detail/';
                     this.games = [];
                 }
@@ -39,6 +39,11 @@ System.register(['@angular/core', '@angular/http', 'rxjs/Observable'], function(
                 };
                 GameLibraryService.prototype.getByIsin = function (isin) {
                     return this._http.get(this._gamelib_detail_url + isin)
+                        .map(function (resp) { return resp.json(); })
+                        .catch(this.handleError);
+                };
+                GameLibraryService.prototype.addToRental = function (isin) {
+                    return this._http.get(this._gamelib_addToRent_url + isin)
                         .map(function (resp) { return resp.json(); })
                         .catch(this.handleError);
                 };

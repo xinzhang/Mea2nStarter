@@ -35,7 +35,7 @@ import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal';
     ]
 })
 @Routes([
-    { path: '/welcome', component: WelcomeComponent},
+    { path: '/welcome', component: WelcomeComponent, useAsDefault: true},
     { path: '/newRelease', component: NewReleaseComponent },
     { path: '/myGames', component: MyGamesComponent },
     { path: '/register', component: RegisterComponent },
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
     modal: ModalComponent;
     
     constructor(public authService : AuthService,
-                private _notifyService: NotificationsService
+                private _notifyService: NotificationsService,
                 private _router: Router) {        
     }
     
